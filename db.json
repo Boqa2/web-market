@@ -1,0 +1,272 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "email": "john@example.com",
+        "password": "boqali234",
+        "name": "John Doe",
+        "role": "customer"
+      },
+      {
+        "id": 2,
+        "email": "admin@example.com",
+        "password": "$2a$10$XQxWZNMNZnXGxBLcLRYxLOeGD.0AaXnUGfWOyAkC8qdEzAh2HMQdG",
+        "name": "Admin User",
+        "role": "admin"
+      },
+      {
+        "id": 3,
+        "email": "jane@example.com",
+        "password": "$2a$10$XQxWZNMNZnXGxBLcLRYxLOeGD.0AaXnUGfWOyAkC8qdEzAh2HMQdG",
+        "name": "Jane Smith",
+        "role": "customer"
+      },
+      {
+        "id": 4,
+        "email": "support@example.com",
+        "password": "$2a$10$XQxWZNMNZnXGxBLcLRYxLOeGD.0AaXnUGfWOyAkC8qdEzAh2HMQdG",
+        "name": "Support Team",
+        "role": "support"
+      },
+      {
+        "id": 5,
+        "email": "alice@example.com",
+        "password": "$2a$10$XQxWZNMNZnXGxBLcLRYxLOeGD.0AaXnUGfWOyAkC8qdEzAh2HMQdG",
+        "name": "Alice Johnson",
+        "role": "customer"
+      }
+    ],
+    "products": [
+      {
+        "id": 1,
+        "name": "Smartphone X",
+        "description": "Latest model with advanced features",
+        "price": 799.99,
+        "categoryId": 1,
+        "inventory": 50,
+        "imageUrl": "/placeholder.svg?height=300&width=300"
+      },
+      {
+        "id": 2,
+        "name": "Laptop Pro",
+        "description": "High-performance laptop for professionals",
+        "price": 1299.99,
+        "categoryId": 1,
+        "inventory": 30,
+        "imageUrl": "/placeholder.svg?height=300&width=300"
+      },
+      {
+        "id": 3,
+        "name": "Wireless Earbuds",
+        "description": "True wireless earbuds with noise cancellation",
+        "price": 149.99,
+        "categoryId": 2,
+        "inventory": 100,
+        "imageUrl": "/placeholder.svg?height=300&width=300"
+      },
+      {
+        "id": 4,
+        "name": "4K Smart TV",
+        "description": "55-inch 4K HDR Smart TV with AI features",
+        "price": 699.99,
+        "categoryId": 1,
+        "inventory": 25,
+        "imageUrl": "/placeholder.svg?height=300&width=300"
+      },
+      {
+        "id": 5,
+        "name": "Fitness Tracker",
+        "description": "Advanced fitness tracker with heart rate monitoring",
+        "price": 99.99,
+        "categoryId": 3,
+        "inventory": 75,
+        "imageUrl": "/placeholder.svg?height=300&width=300"
+      },
+      {
+        "id": 6,
+        "name": "Coffee Maker",
+        "description": "Programmable coffee maker with built-in grinder",
+        "price": 129.99,
+        "categoryId": 4,
+        "inventory": 40,
+        "imageUrl": "/placeholder.svg?height=300&width=300"
+      },
+      {
+        "id": 7,
+        "name": "Bluetooth Speaker",
+        "description": "Portable waterproof Bluetooth speaker",
+        "price": 79.99,
+        "categoryId": 2,
+        "inventory": 60,
+        "imageUrl": "/placeholder.svg?height=300&width=300"
+      },
+      {
+        "id": 8,
+        "name": "Digital Camera",
+        "description": "Mirrorless digital camera with 4K video",
+        "price": 899.99,
+        "categoryId": 5,
+        "inventory": 20,
+        "imageUrl": "/placeholder.svg?height=300&width=300"
+      },
+      {
+        "id": 9,
+        "name": "Gaming Console",
+        "description": "Next-gen gaming console with 4K graphics",
+        "price": 499.99,
+        "categoryId": 6,
+        "inventory": 35,
+        "imageUrl": "/placeholder.svg?height=300&width=300"
+      },
+      {
+        "id": 10,
+        "name": "Smart Watch",
+        "description": "Fitness-focused smartwatch with GPS",
+        "price": 249.99,
+        "categoryId": 3,
+        "inventory": 45,
+        "imageUrl": "/placeholder.svg?height=300&width=300"
+      },
+      {
+        "name": "Iphone 15 pro max",
+        "description": "good phone",
+        "price": 233,
+        "categoryId": 1,
+        "id": 11
+      },
+      {
+        "name": "Iphone 15 pro max",
+        "description": "good",
+        "price": -1,
+        "categoryId": null,
+        "id": 12
+      },
+      {
+        "name": "redmi",
+        "description": "Good laptop",
+        "price": 900,
+        "categoryId": null,
+        "id": 13
+      }
+    ],
+    "categories": [
+      {
+        "id": 1,
+        "name": "Electronics",
+        "description": "Gadgets and electronic devices"
+      },
+      {
+        "id": 2,
+        "name": "Audio",
+        "description": "Headphones, speakers, and audio accessories"
+      },
+      {
+        "id": 3,
+        "name": "Wearables",
+        "description": "Smartwatches and fitness trackers"
+      },
+      {
+        "id": 4,
+        "name": "Home Appliances",
+        "description": "Kitchen and home electronic appliances"
+      },
+      {
+        "id": 5,
+        "name": "Cameras",
+        "description": "Digital cameras and photography equipment"
+      },
+      {
+        "id": 6,
+        "name": "Gaming",
+        "description": "Gaming consoles and accessories"
+      }
+    ],
+    "orders": [
+      {
+        "id": 1,
+        "userId": 1,
+        "products": [
+          {
+            "productId": 1,
+            "quantity": 1
+          },
+          {
+            "productId": 3,
+            "quantity": 2
+          }
+        ],
+        "total": 1099.97,
+        "status": "processing",
+        "createdAt": "2023-09-26T10:00:00Z"
+      },
+      {
+        "id": 2,
+        "userId": 3,
+        "products": [
+          {
+            "productId": 2,
+            "quantity": 1
+          },
+          {
+            "productId": 5,
+            "quantity": 1
+          }
+        ],
+        "total": 1399.98,
+        "status": "shipped",
+        "createdAt": "2023-09-25T14:30:00Z"
+      },
+      {
+        "id": 3,
+        "userId": 5,
+        "products": [
+          {
+            "productId": 4,
+            "quantity": 1
+          },
+          {
+            "productId": 6,
+            "quantity": 1
+          },
+          {
+            "productId": 7,
+            "quantity": 2
+          }
+        ],
+        "total": 1089.96,
+        "status": "delivered",
+        "createdAt": "2023-09-24T09:15:00Z"
+      },
+      {
+        "id": 4,
+        "userId": 1,
+        "products": [
+          {
+            "productId": 8,
+            "quantity": 1
+          }
+        ],
+        "total": 899.99,
+        "status": "processing",
+        "createdAt": "2023-09-26T16:45:00Z"
+      },
+      {
+        "id": 5,
+        "userId": 3,
+        "products": [
+          {
+            "productId": 9,
+            "quantity": 1
+          },
+          {
+            "productId": 10,
+            "quantity": 1
+          }
+        ],
+        "total": 749.98,
+        "status": "pending",
+        "createdAt": "2023-09-26T18:20:00Z"
+      }
+    ],
+    "reviews": []
+  }
