@@ -48,3 +48,5 @@ export default tseslint.config({
   },
 })
 ```
+
+"https://demo-stories.myinsales.ru/?_ga=2.138705393.337393422.1729103274-283098286.1729103273"
