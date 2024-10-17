@@ -1,6 +1,12 @@
+import CardSlider from "../Slider/CardSlider";
+
 const HomePage = () => {
     return ( 
-        <h1>hello</h1>
+        <div>
+            <div>
+                <CardSlider />
+            </div>
+        </div>
      );
 }
  

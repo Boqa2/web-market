@@ -25,7 +25,7 @@ const Header = () => {
         </div>
         <div>
           {!input ? (
-            <img src={Logo} alt="" />
+            <img src={Logo.urllogo} alt="" />
           ) : (
             <div className="relative">
               <input
