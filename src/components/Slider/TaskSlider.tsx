@@ -3,9 +3,9 @@ type Props = {
 }
 const TaskSlider = ({ tasks }: Props) => {
     return ( 
-        <li>
-            <img src={tasks}  alt="" />
-        </li>
+        <div className="border-2 border-[#ff6163] z-[-999] mx-2 p-2 rounded-md">
+            <img src={tasks}  alt=""  />
+        </div>
      );
 }
  
