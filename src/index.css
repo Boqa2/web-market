@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .hover{
+        @apply hover:text-slate-500 cursor-pointer
+    }
+}

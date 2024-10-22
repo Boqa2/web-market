@@ -32,7 +32,7 @@ const HomePage = () => {
         <button
           onClick={() => handleBorder("men")}
           className={`hover:text-slate-500 text-slate-900 ${
-            btn ? `border-b-2 border-slate-300` : ""
+            btn ? `border-b border-black` : ""
           }`}
         >
           Мужчины
@@ -40,14 +40,14 @@ const HomePage = () => {
         <button
           onClick={() => handleBorder("women")}
           className={`hover:text-slate-500 text-slate-900 ${
-            btn2 ? `border-b-2 border-slate-300` : ""
+            btn2 ? `border-b border-black` : ""
           }`}
         >
           Женшины
         </button>
       </div>
       <div className="">
-        <CardImg url={url} />
+        <CardImg  url={url} />
       </div>
     </div>
   );

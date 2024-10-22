@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -6,6 +6,9 @@ import Louyot from "./components/Layout/Louyot";
 import TrashPage from "./components/Pages/TrashPage";
 import HomePage from "./components/Pages/HomePage";
 import FavoritesPage from "./components/Pages/FavoritesPage";
+import LoginPage from "./components/LoginPage";
+import CardAbout from "./components/Card/CardAbout";
+
 
 const router = createBrowserRouter([
   {
@@ -14,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <HomePage  />,
       },
       {
         path: "trash",
@@ -22,7 +25,15 @@ const router = createBrowserRouter([
       },
       {
         path: "favorites",
-        element : <FavoritesPage />
+        element: <FavoritesPage />,
+      },
+      {
+        path:"/cardimgs/:id",
+        element: <CardAbout />
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
       },
     ],
   },

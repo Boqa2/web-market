@@ -8,6 +8,7 @@ export  type CardSliderData = {
   card: string;
   title: string,
   price:number | string
+  url?: boolean
 };
 type  prop ={
   url: boolean,
@@ -29,7 +30,7 @@ const CardImg = ({url}:prop) => {
         setError("Failed to fetch data.");
         setLoading(false);
       });
-  }, []);
+  }, [url]);
   // const handleHeart =(id:number)=>{
   //   if(heart(id)){
   //     setHeart(true)
@@ -48,7 +49,7 @@ const CardImg = ({url}:prop) => {
         <>{error}</>
       ) : data && data.length > 0 ? (
         data.map((task) => (
-          <TaskForCard id={task.id} title={task.title} card={task.card} price={task.price} />
+          <TaskForCard url={url} id={task.id} key={task.id} title={task.title} card={task.card} price={task.price} />
         ))
       ) : (
         <>No data available</>

@@ -1,169 +1,186 @@
 {
-    "cardslider":[
-      {
-        "id":1,
-        "urls": "https://static.insales-cdn.com/r/nvwIMXyc-70/rs:fit:250:0:1/q:100/plain/files/1/7357/17292477/original/1_d581c8bddfaf8e09066a60483bb2a17e.jpg@webp"
-      },
-      {
-        "id":2,
-        "urls":"https://static.insales-cdn.com/r/mg7pvrgYOrs/rs:fit:250:0:1/q:100/plain/files/1/7364/17292484/original/2_50a6527fca453d3bc041304b1d68a3b0.jpg@jpg"
-      },
-      {
-        "id":3,
-        "urls": "https://static.insales-cdn.com/r/KWi5D6vRXeo/rs:fit:250:0:1/q:100/plain/files/1/7363/17292483/original/3_5756ecc673b06dcfda592b17247478f3.jpg@jpg"
-      },
-      {
-        "id":4,
-        "urls": "https://static.insales-cdn.com/r/3rib_tzitnQ/rs:fit:250:0:1/q:100/plain/files/1/7378/17292498/original/4.jpg@jpg"
-      },
-      {
-        "id":5,
-        "urls": "https://static.insales-cdn.com/r/MDF8UAv3sts/rs:fit:250:0:1/q:100/plain/files/1/7380/17292500/original/5.jpg@jpg"
-      },
-      {
-        "id":6,
-        "urls": "https://static.insales-cdn.com/r/eowLJ9iBv2E/rs:fit:250:0:1/q:100/plain/files/1/7382/17292502/original/6.jpg@jpg"
-      },
-      {
-        "id":7,
-        "urls": "https://static.insales-cdn.com/r/H3ZTC56CuFQ/rs:fit:250:0:1/q:100/plain/files/1/7383/17292503/original/7_12efc2237874aaf9e1ece2fce6bcebb2.jpg@jpg"
-      },
-      {
-        "id":8,
-        "urls": "https://static.insales-cdn.com/r/mQ5GMkdla4s/rs:fit:250:0:1/q:100/plain/files/1/7385/17292505/original/8.jpg@jpg"
-      },
-      {
-        "id": 9,
-        "urls": "https://static.insales-cdn.com/r/_YuJ0PyRLho/rs:fit:250:0:1/q:100/plain/files/1/7387/17292507/original/9.jpg@jpg"
-      }
-    ],
-    "cardimgs":[
-      {
-        "id": 1,
-        "card":"https://static.insales-cdn.com/r/vNwPGx0L-c0/rs:fit:440:0:1/plain/images/products/1/2153/423413865/large_Rectangle-6.jpg@jpg",
-        "title": "Бомбер красный",
-        "price": "5 290 ₽"
-      },
-      {
-        "id": 2,
-        "card":"https://static.insales-cdn.com/r/Ts_q74LXfQQ/rs:fit:440:0:1/plain/images/products/1/2216/423413928/large_Rectangle-7.jpg@jpg",
-        "title": "Пальто кашемировое",
-        "price": "15 490 ₽"
-      },
-      {
-        "id": 3,
-        "card":"https://static.insales-cdn.com/r/udEadXZYzZ8/rs:fit:440:0:1/plain/images/products/1/2269/423413981/large_Rectangle-14.jpg@webp",
-        "title": "Футболка горчичная",
-        "price":"1 790 ₽"
-      },
-      {
-        "id": 4,
-        "card":"https://static.insales-cdn.com/r/7BLFj_QD-_A/rs:fit:440:0:1/plain/images/products/1/2350/423414062/large_Rectangle-13.jpg@jpg",
-        "title": "Кардиган серый",
-        "price":"5 690 ₽"
-      },
-      {
-        "id": 5,
-        "card":"https://static.insales-cdn.com/r/uSx0hIsiCyM/rs:fit:440:0:1/plain/images/products/1/2439/423414151/large_Rectangle-3.jpg@jpg",
-        "title":  "Куртка с карманами",
-        "price":"6 990 ₽"
-        
-      },
-      {
-        "id": 6,
-        "card":"https://static.insales-cdn.com/r/Oq3Qrn4MVmM/rs:fit:440:0:1/plain/images/products/1/2515/423414227/large_Rectangle.jpg@webp",
-        "title": "Пальто песочное",
-        "price":"18 990 ₽"
-        
-      },
-      {
-        "id": 7,
-        "card":"https://static.insales-cdn.com/r/ZvIZeg4hmBI/rs:fit:440:0:1/plain/images/products/1/2830/423414542/large_Rectangle-1.jpg@jpg",
-        "title": "Джинсы с принтом",
-        "price":"3 290 ₽"
-        
-      },
-      {
-        "id": 8,
-        "card":"https://static.insales-cdn.com/r/3bgJf9ha2Js/rs:fit:440:0:1/plain/images/products/1/3185/423414897/large_Rectangle-2.jpg@jpg",
-        "title": "Джинсовая куртка с принтами",
-        "price":"6 490 ₽"
-        
-      },
-      {
-        "id": 9,
-        "card":"https://static.insales-cdn.com/r/Te3y3s-X7QI/rs:fit:440:0:1/plain/images/products/1/3648/423415360/large_Rectangle-5.jpg@jpg",
-        "title": "Джинсовая куртка голубая",
-        "price":"2 990 ₽"        
-      },
-      {
-        "id": 10,
-        "card":"https://static.insales-cdn.com/r/dXleGVXbybI/rs:fit:440:0:1/plain/images/products/1/3821/423415533/large_Rectangle-10.jpg@jpg",
-        "title": "Водолазка Slim Fit",
-        "price":"3 790 ₽"
-        
-      }
-    ],
-    "card4women":[
-      {
-        "id":1,
-        "card":"https://static.insales-cdn.com/r/3tR9I6Ek8Ik/rs:fit:440:0:1/plain/images/products/1/1901/423438189/large_Rectangle.jpg@webp",
-        "title": "Джинсовая куртка синяя",
-        "price": "2 590 ₽"
-      },
-      {
-        "id":2,
-        "card":"https://static.insales-cdn.com/r/wIDMEdb3fq8/rs:fit:440:0:1/plain/images/products/1/2795/423439083/large_Rectangle-1.jpg@webp",
-        "title": "Куртка с вишенками",
-        "price": "7 290 ₽"
-      },
-      {
-        "id":3,
-        "card":"https://static.insales-cdn.com/r/0u1HFK7pXgE/rs:fit:440:0:1/plain/images/products/1/3168/423439456/large_Rectangle-2.jpg@webp",
-        "title": "Юбка длинная, желтая клетка",
-        "price": "3 890 ₽"
-      },
-      {
-        "id":4,
-        "card":"https://static.insales-cdn.com/r/EdACZXnXSss/rs:fit:440:0:1/plain/images/products/1/3663/423439951/large_Rectangle-3.jpg@webp",
-        "title": "Платье кружевное, морковное",
-        "price": "22 990 ₽"
-      },
-      {
-        "id":5,
-        "card":"https://static.insales-cdn.com/r/BQ0OwddRcn8/rs:fit:440:0:1/plain/images/products/1/1026/423445506/large_Rectangle-5.jpg@webp",
-        "title": "Платье в тонкую полоску, голубое",
-        "price": "4 790 ₽"
-      },
-      {
-        "id":6,
-        "card":"https://static.insales-cdn.com/r/O2K7YKj40VQ/rs:fit:440:0:1/plain/images/products/1/1331/423445811/large_Rectangle-6.jpg@webp",
-        "title": "Платье красное в цветочек",
-        "price": "5 290 ₽"
-      },
-      {
-        "id":7,
-        "card":"https://static.insales-cdn.com/r/XIDvEp62j9g/rs:fit:440:0:1/plain/images/products/1/2329/423446809/large_Rectangle-7.jpg@webp",
-        "title": "Платье черное в цветочек",
-        "price": "8 890 ₽"
-      },
-      {
-        "id":8,
-        "card":"https://static.insales-cdn.com/r/iPQYUcKbDQ0/rs:fit:440:0:1/plain/images/products/1/3508/423447988/large_Rectangle-8.jpg@webp",
-        "title": "Джинсовая куртка синяя",
-        "price": "2 590 ₽"
-      },
-      {
-        "id": 9,
-        "card":"https://static.insales-cdn.com/r/Fu6wq-tT51A/rs:fit:440:0:1/plain/images/products/1/3827/423448307/large_Rectangle-10.jpg@webp",
-        "title": "Платье синее в цветочек",
-        "price": "6 990 ₽"
-      },
-      {
-        "id": 10,
-        "card":"https://static.insales-cdn.com/r/RQpmN1KRtHQ/rs:fit:440:0:1/plain/images/products/1/4293/423448773/large_Rectangle-11.jpg@webp",
-        "title": "Комбинезон серый",
-        "price": "8 890 ₽"
-      }
-    ]
-  }
+  "users": [
+   
+  ],
+  "cardslider": [
+    {
+      "id": "1",
+      "urls": "https://static.insales-cdn.com/r/nvwIMXyc-70/rs:fit:250:0:1/q:100/plain/files/1/7357/17292477/original/1_d581c8bddfaf8e09066a60483bb2a17e.jpg@webp"
+    },
+    {
+      "id": "2",
+      "urls": "https://static.insales-cdn.com/r/mg7pvrgYOrs/rs:fit:250:0:1/q:100/plain/files/1/7364/17292484/original/2_50a6527fca453d3bc041304b1d68a3b0.jpg@jpg"
+    },
+    {
+      "id": "3",
+      "urls": "https://static.insales-cdn.com/r/KWi5D6vRXeo/rs:fit:250:0:1/q:100/plain/files/1/7363/17292483/original/3_5756ecc673b06dcfda592b17247478f3.jpg@jpg"
+    },
+    {
+      "id": "4",
+      "urls": "https://static.insales-cdn.com/r/3rib_tzitnQ/rs:fit:250:0:1/q:100/plain/files/1/7378/17292498/original/4.jpg@jpg"
+    },
+    {
+      "id": "5",
+      "urls": "https://static.insales-cdn.com/r/MDF8UAv3sts/rs:fit:250:0:1/q:100/plain/files/1/7380/17292500/original/5.jpg@jpg"
+    },
+    {
+      "id": "6",
+      "urls": "https://static.insales-cdn.com/r/eowLJ9iBv2E/rs:fit:250:0:1/q:100/plain/files/1/7382/17292502/original/6.jpg@jpg"
+    },
+    {
+      "id": "7",
+      "urls": "https://static.insales-cdn.com/r/H3ZTC56CuFQ/rs:fit:250:0:1/q:100/plain/files/1/7383/17292503/original/7_12efc2237874aaf9e1ece2fce6bcebb2.jpg@jpg"
+    },
+    {
+      "id": "8",
+      "urls": "https://static.insales-cdn.com/r/mQ5GMkdla4s/rs:fit:250:0:1/q:100/plain/files/1/7385/17292505/original/8.jpg@jpg"
+    },
+    {
+      "id": "9",
+      "urls": "https://static.insales-cdn.com/r/_YuJ0PyRLho/rs:fit:250:0:1/q:100/plain/files/1/7387/17292507/original/9.jpg@jpg"
+    }
+  ],
+  "cardimgs": [
+    {
+      "id": "1",
+      "card": "https://static.insales-cdn.com/r/vNwPGx0L-c0/rs:fit:440:0:1/plain/images/products/1/2153/423413865/large_Rectangle-6.jpg@jpg",
+      "title": "Бомбер красный",
+      "like": false,
+      "price": "5 290 ₽"
+    },
+    {
+      "id": "2",
+      "card": "https://static.insales-cdn.com/r/Ts_q74LXfQQ/rs:fit:440:0:1/plain/images/products/1/2216/423413928/large_Rectangle-7.jpg@jpg",
+      "title": "Пальто кашемировое",
+      "like": false,
+      "price": "15 490 ₽"
+    },
+    {
+      "id": "3",
+      "card": "https://static.insales-cdn.com/r/udEadXZYzZ8/rs:fit:440:0:1/plain/images/products/1/2269/423413981/large_Rectangle-14.jpg@webp",
+      "title": "Футболка горчичная",
+      "like": false,
+      "price": "1 790 ₽"
+    },
+    {
+      "id": "4",
+      "card": "https://static.insales-cdn.com/r/7BLFj_QD-_A/rs:fit:440:0:1/plain/images/products/1/2350/423414062/large_Rectangle-13.jpg@jpg",
+      "title": "Кардиган серый",
+      "like": false,
+      "price": "5 690 ₽"
+    },
+    {
+      "id": "5",
+      "card": "https://static.insales-cdn.com/r/uSx0hIsiCyM/rs:fit:440:0:1/plain/images/products/1/2439/423414151/large_Rectangle-3.jpg@jpg",
+      "title": "Куртка с карманами",
+      "like": false,
+      "price": "6 990 ₽"
+    },
+    {
+      "id": "6",
+      "card": "https://static.insales-cdn.com/r/Oq3Qrn4MVmM/rs:fit:440:0:1/plain/images/products/1/2515/423414227/large_Rectangle.jpg@webp",
+      "title": "Пальто песочное",
+      "like": false,
+      "price": "18 990 ₽"
+    },
+    {
+      "id": "7",
+      "card": "https://static.insales-cdn.com/r/ZvIZeg4hmBI/rs:fit:440:0:1/plain/images/products/1/2830/423414542/large_Rectangle-1.jpg@jpg",
+      "title": "Джинсы с принтом",
+      "like": false,
+      "price": "3 290 ₽"
+    },
+    {
+      "id": "8",
+      "card": "https://static.insales-cdn.com/r/3bgJf9ha2Js/rs:fit:440:0:1/plain/images/products/1/3185/423414897/large_Rectangle-2.jpg@jpg",
+      "title": "Джинсовая куртка с принтами",
+      "like": false,
+      "price": "6 490 ₽"
+    },
+    {
+      "id": "9",
+      "card": "https://static.insales-cdn.com/r/Te3y3s-X7QI/rs:fit:440:0:1/plain/images/products/1/3648/423415360/large_Rectangle-5.jpg@jpg",
+      "title": "Джинсовая куртка голубая",
+      "like": false,
+      "price": "2 990 ₽"
+    },
+    {
+      "id": "10",
+      "card": "https://static.insales-cdn.com/r/dXleGVXbybI/rs:fit:440:0:1/plain/images/products/1/3821/423415533/large_Rectangle-10.jpg@jpg",
+      "title": "Водолазка Slim Fit",
+      "like": false,
+      "price": "3 790 ₽"
+    }
+  ],
+  "card4women": [
+    {
+      "id": "11",
+      "card": "https://static.insales-cdn.com/r/3tR9I6Ek8Ik/rs:fit:440:0:1/plain/images/products/1/1901/423438189/large_Rectangle.jpg@webp",
+      "title": "Джинсовая куртка синяя",
+      "like": false,
+      "price": "2 590 ₽"
+    },
+    {
+      "id": "12",
+      "card": "https://static.insales-cdn.com/r/wIDMEdb3fq8/rs:fit:440:0:1/plain/images/products/1/2795/423439083/large_Rectangle-1.jpg@webp",
+      "title": "Куртка с вишенками",
+      "like": false,
+      "price": "7 290 ₽"
+    },
+    {
+      "id": "13",
+      "card": "https://static.insales-cdn.com/r/0u1HFK7pXgE/rs:fit:440:0:1/plain/images/products/1/3168/423439456/large_Rectangle-2.jpg@webp",
+      "title": "Юбка длинная, желтая клетка",
+      "like": false,
+      "price": "3 890 ₽"
+    },
+    {
+      "id": "14",
+      "card": "https://static.insales-cdn.com/r/EdACZXnXSss/rs:fit:440:0:1/plain/images/products/1/3663/423439951/large_Rectangle-3.jpg@webp",
+      "title": "Платье кружевное, морковное",
+      "like": false,
+      "price": "22 990 ₽"
+    },
+    {
+      "id": "15",
+      "card": "https://static.insales-cdn.com/r/BQ0OwddRcn8/rs:fit:440:0:1/plain/images/products/1/1026/423445506/large_Rectangle-5.jpg@webp",
+      "title": "Платье в тонкую полоску, голубое",
+      "like": false,
+      "price": "4 790 ₽"
+    },
+    {
+      "id": "16",
+      "card": "https://static.insales-cdn.com/r/O2K7YKj40VQ/rs:fit:440:0:1/plain/images/products/1/1331/423445811/large_Rectangle-6.jpg@webp",
+      "title": "Платье красное в цветочек",
+      "like": false,
+      "price": "5 290 ₽"
+    },
+    {
+      "id": "17",
+      "card": "https://static.insales-cdn.com/r/XIDvEp62j9g/rs:fit:440:0:1/plain/images/products/1/2329/423446809/large_Rectangle-7.jpg@webp",
+      "title": "Платье черное в цветочек",
+      "like": false,
+      "price": "8 890 ₽"
+    },
+    {
+      "id": "18",
+      "card": "https://static.insales-cdn.com/r/iPQYUcKbDQ0/rs:fit:440:0:1/plain/images/products/1/3508/423447988/large_Rectangle-8.jpg@webp",
+      "title": "Джинсовая куртка синяя",
+      "like": false,
+      "price": "2 590 ₽"
+    },
+    {
+      "id": "19",
+      "card": "https://static.insales-cdn.com/r/Fu6wq-tT51A/rs:fit:440:0:1/plain/images/products/1/3827/423448307/large_Rectangle-10.jpg@webp",
+      "title": "Платье синее в цветочек",
+      "like": false,
+      "price": "6 990 ₽"
+    },
+    {
+      "id": "20",
+      "card": "https://static.insales-cdn.com/r/RQpmN1KRtHQ/rs:fit:440:0:1/plain/images/products/1/4293/423448773/large_Rectangle-11.jpg@webp",
+      "title": "Комбинезон серый",
+      "price": "8 890 ₽"
+    }
+  ]
+}

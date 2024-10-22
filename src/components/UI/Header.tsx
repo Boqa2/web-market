@@ -22,17 +22,14 @@ const Header = () => {
   //     setBtn2(true)
   //     setBtn(false)
   //   }
-    
+
   // }
 
   return (
     <div className="p-3">
-      <header className="flex text-2xl items-center justify-between ">
+      <header className="flex text-2xl items-center mb-3 justify-between ">
         <div className="flex gap-2 font-semibold items-center text-xl">
-          <button
-            className="text-3xl"
-            onClick={() => setOpenSidebar(true)}
-          >
+          <button className="text-3xl" onClick={() => setOpenSidebar(true)}>
             <i className="bx bx-menu"></i>
           </button>
           <Link to={"/"}>Меню</Link>
@@ -44,7 +41,7 @@ const Header = () => {
             <div className="relative">
               <input
                 {...register("title")}
-                className="py-[9px] outline-none rounded-md px-3 w-[600px]"
+                className="py-[9px] text-xl outline-none rounded-md px-3 w-[600px]"
                 type="text"
               />
               <button
@@ -69,13 +66,23 @@ const Header = () => {
         </div>
       </header>
       {openSidebar && <SideBar openSidebar={() => setOpenSidebar(false)} />}
-        <div className="border border-slate-300 "></div>
-        <div className="flex justify-center my-2 mt-3 text-slate-900 text-lg font-medium items-center  gap-3">
-          <a className="hover:text-slate-500
-          " href="">Женшинам</a>
-          <a className="hover:text-slate-500
-          " href="">Мужчинам</a>
-        </div>
+      <div className="border border-slate-300 "></div>
+      <div className="flex justify-center my-2 mt-3 text-slate-900 text-lg font-medium items-center  gap-3">
+        <a
+          className="hover:text-slate-500
+          "
+          href=""
+        >
+          Женшинам
+        </a>
+        <a
+          className="hover:text-slate-500
+          "
+          href=""
+        >
+          Мужчинам
+        </a>
+      </div>
     </div>
   );
 };
