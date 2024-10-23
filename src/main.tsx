@@ -1,4 +1,4 @@
-import { StrictMode, useState } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -7,7 +7,8 @@ import TrashPage from "./components/Pages/TrashPage";
 import HomePage from "./components/Pages/HomePage";
 import FavoritesPage from "./components/Pages/FavoritesPage";
 import LoginPage from "./components/LoginPage";
-import CardAbout from "./components/Card/CardAbout";
+import CardAboutWomen from "./components/Card/CardAboutWomen";
+import CardAboutMen from "./components/Card/CardAboutMen";
 
 
 const router = createBrowserRouter([
@@ -28,8 +29,12 @@ const router = createBrowserRouter([
         element: <FavoritesPage />,
       },
       {
+        path:"/card4women/:id",
+        element: <CardAboutWomen />
+      },
+      {
         path:"/cardimgs/:id",
-        element: <CardAbout />
+        element: <CardAboutMen />
       },
       {
         path: "login",

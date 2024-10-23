@@ -3,17 +3,22 @@ import { useEffect, useState } from "react";
 import Logo from "../Libs/urls";
 import TaskForCard from "./TaskForCard";
 
-export  type CardSliderData = {
+export type CardSliderData = {
   id: number;
   card: string;
-  title: string,
-  price:number | string
-  url?: boolean
+  title: string;
+  price: number | string;
+  url?: boolean;
+  about: {
+    text: string;
+    sostav: string;
+    mesto: string;
+  };
 };
-type  prop ={
-  url: boolean,
-}
-const CardImg = ({url}:prop) => {
+type prop = {
+  url: boolean;
+};
+const CardImg = ({ url }: prop) => {
   const [data, setData] = useState<CardSliderData[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -49,7 +54,14 @@ const CardImg = ({url}:prop) => {
         <>{error}</>
       ) : data && data.length > 0 ? (
         data.map((task) => (
-          <TaskForCard url={url} id={task.id} key={task.id} title={task.title} card={task.card} price={task.price} />
+          <TaskForCard
+            url={url}
+            id={task.id}
+            key={task.id}
+            title={task.title}
+            card={task.card}
+            price={task.price}
+          />
         ))
       ) : (
         <>No data available</>
