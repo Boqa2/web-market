@@ -34,14 +34,37 @@ const CardSlider = () => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 5, // Базовое количество слайдов
     slidesToScroll: 1,
-    draggable: true, // Включаем перетаскивание мышкой
-    swipeToSlide: true, // Включаем возможность перетаскивания слайда мышкой
+    draggable: true,
+    swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 1024, // Экран <= 1024px
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768, // Экран <= 768px
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480, // Экран <= 480px
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
-    <div className="px-8">
+    <div className="px-8 container w-full md:h-full h-[1000px] ">
       <div className="overflow-hidden ">
         <Slider {...settings}>
           {loading ? (

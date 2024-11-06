@@ -1,6 +1,8 @@
 import { useState } from "react";
-import CardImg from "../Card/CardImg";
+import CardImg from "../Card/CardWomenImg";
 import CardSlider from "../Slider/CardSlider";
+import CardWomenImg from "../Card/CardWomenImg";
+import CardMenImg from "../Card/CardMenImg";
 
 const HomePage = () => {
   const [btn, setBtn] = useState<boolean>(true);
@@ -24,7 +26,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex container md:w-full flex-col gap-10">
       <div className="relative z-0">
         <CardSlider />
       </div>
@@ -47,7 +49,8 @@ const HomePage = () => {
         </button>
       </div>
       <div className="">
-        <CardImg  url={url} />
+        {!url ? <CardWomenImg /> : <CardMenImg /> }
+        
       </div>
     </div>
   );

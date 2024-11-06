@@ -9,7 +9,8 @@ import FavoritesPage from "./components/Pages/FavoritesPage";
 import LoginPage from "./components/LoginPage";
 import CardAboutWomen from "./components/Card/CardAboutWomen";
 import CardAboutMen from "./components/Card/CardAboutMen";
-
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage  />,
+        element: <HomePage />,
       },
       {
         path: "trash",
@@ -29,12 +30,12 @@ const router = createBrowserRouter([
         element: <FavoritesPage />,
       },
       {
-        path:"/card4women/:id",
-        element: <CardAboutWomen />
+        path: "/card4women/:id",
+        element: <CardAboutWomen />,
       },
       {
-        path:"/cardimgs/:id",
-        element: <CardAboutMen />
+        path: "/cardimgs/:id",
+        element: <CardAboutMen />,
       },
       {
         path: "login",
@@ -45,6 +46,8 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

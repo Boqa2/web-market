@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Logo from "../Libs/urls";
-import { CardSliderData } from "../Card/CardImg";
+import { CardSliderData } from "../Card/CardWomenImg";
 import TaskForCard from "../Card/TaskForCard";
 
 const TrashPage = () => {
@@ -34,7 +34,9 @@ const TrashPage = () => {
   };
   return (
     <div className="px-10">
-      <h1 className="text-3xl font-semibold text-gray-700 font-mono my-7">Карзина</h1>
+      <h1 className="text-3xl font-semibold text-gray-700 font-mono my-7">
+        Карзина
+      </h1>
       <div className="my-5">Ваща корзина пуста</div>
       <div className="">
         <div className="overflow-hidden">

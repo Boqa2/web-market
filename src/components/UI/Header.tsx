@@ -1,6 +1,6 @@
 import Logo from "../Libs/urls";
 import { useState } from "react";
-import SideBar from "../SideBar";
+import SideBar from "./SideBar";
 import "boxicons/css/boxicons.min.css";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -8,35 +8,24 @@ import { useForm } from "react-hook-form";
 const Header = () => {
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
   const [input, setInput] = useState<boolean>(false);
-
-  // const [btn, setBtn] = useState<boolean>(false )
-  // const [btn2, setBtn2] = useState<boolean>(false )
-
   const { register } = useForm();
-
-  // const handleBorder =()=>{
-  //   if(!btn){
-  //     setBtn(true)
-  //     setBtn2(false)
-  //   }else if(!btn2){
-  //     setBtn2(true)
-  //     setBtn(false)
-  //   }
-
-  // }
-
+  
   return (
-    <div className="p-3">
+    <div className="p-3 container">
       <header className="flex text-2xl items-center mb-3 justify-between ">
         <div className="flex gap-2 font-semibold items-center text-xl">
           <button className="text-3xl" onClick={() => setOpenSidebar(true)}>
             <i className="bx bx-menu"></i>
           </button>
-          <Link to={"/"}>Меню</Link>
+          <Link className="lg:block hidden" to={"/"}>
+            Меню
+          </Link>
         </div>
         <div className="py-3">
           {!input ? (
-            <img src={Logo.urllogo} alt="" />
+            <div className="flex justify-center w-full justify-start">
+              <img  src={Logo.urllogo} alt="" />
+            </div>
           ) : (
             <div className="relative">
               <input
@@ -53,7 +42,7 @@ const Header = () => {
             </div>
           )}
         </div>
-        <div className="space-x-3">
+        <div className="space-x-10 md:block hidden">
           <button onClick={() => setInput(true)}>
             <i className="bx bx-search-alt"></i>
           </button>

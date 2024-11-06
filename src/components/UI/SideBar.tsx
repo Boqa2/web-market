@@ -6,7 +6,7 @@ type Props = {
 const SideBar = ({ openSidebar }: Props) => {
   return (
     <>
-      <div className="bg-white px-8 py-4 z-[999] overflow-x-hidden overflow-y-scroll h-full fixed flex  justify-between top-0 left-0 w-2/6 ">
+      <div className="bg-white px-8 py-4 z-[999] overflow-x-hidden overflow-y-scroll h-full fixed flex  justify-between top-0 left-0 md:w-2/6 w-3/5 ">
         <div>
           <div className="my-4">
             <p className="text-3xl font-semibold">Меню</p>
@@ -51,7 +51,7 @@ const SideBar = ({ openSidebar }: Props) => {
         </div>
       </div>
       <button
-        className="fixed z-[999] bg-white right-[800px] top-10 w-10 h-10 border hover:shadow-inner flex justify-center items-center  rounded-[50%]"
+        className="fixed z-[999] bg-white right-0 md:right-[800px] xl:left-96 top-10 w-10 h-10 border hover:shadow-inner flex justify-center items-center  rounded-[50%]"
         onClick={openSidebar}
       >
         <i className="bx bx-x"></i>

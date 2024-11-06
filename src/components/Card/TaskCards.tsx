@@ -1,6 +1,5 @@
-import { FormEvent } from "react";
+import { useState } from "react";
 import StarRating from "./Start";
-
 type props = {
   card: string;
   title: string;
@@ -8,28 +7,33 @@ type props = {
   text: string;
   mesto: string;
   sostav: string;
-  chenge: boolean;
-  chenge1: boolean;
-  chenge2: boolean;
-  handleClick: (e: FormEvent<HTMLButtonElement>) => void;
-  handleClick1: (e: FormEvent<HTMLButtonElement>) => void;
-  handleClick2: (e: FormEvent<HTMLButtonElement>) => void;
 };
 
-const TaskCard = ({
-  card,
-  title,
-  price,
-  text,
-  mesto,
-  sostav,
-  chenge,
-  chenge1,
-  chenge2,
-  handleClick,
-  handleClick1,
-  handleClick2,
-}: props) => {
+const TaskCard = ({ card, title, price, text, mesto, sostav }: props) => {
+  const [chenge, setChenge] = useState(false);
+  const [chenge1, setChenge1] = useState(false);
+  const [chenge2, setChenge2] = useState(false);
+  const handleClick = () => {
+    if (!chenge) {
+      setChenge(true);
+    } else {
+      setChenge(false);
+    }
+  };
+  const handleClick1 = () => {
+    if (!chenge1) {
+      setChenge1(true);
+    } else {
+      setChenge1(false);
+    }
+  };
+  const handleClick2 = () => {
+    if (!chenge2) {
+      setChenge2(true);
+    } else {
+      setChenge2(false);
+    }
+  };
   return (
     <div className="flex  px-10 gap-5 w-full">
       <div className="w-full flex gap-6">
@@ -67,34 +71,28 @@ const TaskCard = ({
             <div className="border  border-slate-400"></div>
           </div>
           <div>
-            <div className="px-5">
-              <button
-                onClick={handleClick}
-                className="border-b border-slate-400  w-full pb-2  "
-              >
-                <div className="flex  justify-between">
-                  <p>Описания</p>
+            <div className="px-5 font-sans">
+              <div className="border-b border-slate-400  w-full">
+                <div className="flex py-1 mb-1  justify-between">
+                  <p className="text-2xl font-medium">Описания</p>
                   <button onClick={handleClick}>
                     <i
-                     className={`bx bx-chevron-${chenge ? "up" : "down"}`}
+                      className={`bx text-3xl bx-chevron-${chenge ? "up" : "down"}`}
                     ></i>
                   </button>
                 </div>
                 {chenge && (
                   <div>
-                    <p>{text}</p>
+                    <p className="text-lg mb-3">{text}</p>
                   </div>
                 )}
-              </button>
-              <button
-                onClick={handleClick1}
-                className="border-b border-slate-400  w-full py-2 flex flex-col"
-              >
-                <div className="flex w-full justify-between">
-                  <p>Характеристика</p>
+              </div>
+              <div className="border-b border-slate-400  w-full py-2 flex flex-col">
+                <div className="flex py-2 w-full justify-between">
+                  <p className="text-2xl font-medium">Характеристика</p>
                   <button onClick={handleClick1}>
                     <i
-                      className={`bx bx-chevron-${chenge1 ? "up" : "down"}`}
+                      className={`bx text-3xl bx-chevron-${chenge1 ? "up" : "down"}`}
                     ></i>
                     {/* chenge ? "up" : "dowm" */}
                   </button>
@@ -102,35 +100,35 @@ const TaskCard = ({
                 {chenge1 && (
                   <div className=" flex w-full justify-around my-3">
                     <div>
-                      <p>Страна</p>
+                      <p className="text-xl font-semibold">Страна</p>
                       <p>{mesto}</p>
                     </div>
                     <div>
-                      <p>Состав</p>
+                      <p className="text-xl font-semibold">Состав</p>
                       <p>{sostav}</p>
                     </div>
                   </div>
                 )}
-              </button>
+              </div>
 
-              <button
-                onClick={handleClick2}
-                className="border-b border-slate-400 py-2 w-full "
-              >
-                <div className="flex justify-between">
-                  <p>Отзывы</p>
+              <div className="border-b border-slate-400 py-2 w-full ">
+                <div className="flex py-2 justify-between">
+                  <p className="text-2xl font-medium">Отзывы</p>
                   <button onClick={handleClick2}>
                     <i
-                      className={`bx bx-chevron-${chenge2 ? "up" : "down"}`}
+                      className={`bx text-3xl bx-chevron-${chenge2 ? "up" : "down"}`}
                     ></i>
                   </button>
                 </div>
                 {chenge2 && (
                   <div>
                     <p>Отзывов еще никто не оставлял</p>
+                    <button>
+                      Оставить Отзыв
+                    </button>
                   </div>
                 )}
-              </button>
+              </div>
             </div>
           </div>
         </div>
