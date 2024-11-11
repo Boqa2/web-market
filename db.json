@@ -232,7 +232,7 @@
         "sostav": "Кожа"
       },
       "hearts": false,
-      "trash": true
+      "trash": false
     },
     {
       "id": "12",
@@ -246,25 +246,20 @@
         "sostav": "Кожа"
       },
       "hearts": false,
-      "trash": true
+      "trash": false
     },
     {
       "id": "13",
       "card": "https://static.insales-cdn.com/r/7ErxF6uLtVo/rs:fit:1000:0:1/q:100/plain/images/products/1/3168/423439456/Rectangle-2.jpg@webp",
       "title": "Юбка длинная, желтая клетка",
       "price": "3 890 ₽",
-      "size": {
-        "s": "s",
-        "m": "m",
-        "l": "l",
-        "xl": "xl"
-      },
+      "size": "s",
       "about": {
         "text": "Тут описание вашего товара, начните с самого интересного о вашем товаре, зацепите вашего покупателя. Пишите так, чтобы было полезно вашему будущему покупателю. Можно добавить материал который используется в вашем товаре (или состав вашего продукта). Добавьте инструкцию по использованию.",
         "mesto": "Италия",
         "sostav": "Шёлк"
       },
-      "hearts": false,
+      "hearts": true,
       "trash": true
     },
     {

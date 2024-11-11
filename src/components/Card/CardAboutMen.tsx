@@ -80,7 +80,7 @@ const CardAboutMen = () => {
       ) : data ? (
         <TaskCard 
         handleHearts={()=>chengeHearts(data.id)}
-        hearts={heart[data.id] || undefined ? heart[data.id] : data.hearts}
+        hearts={heart[data.id] !== undefined ? heart[data.id] : data.hearts}
         handleSizeS={() => sizeS(data.id)}
         handleSizeL={() => sizeL(data.id)}
         handleSizeM={() => sizeM(data.id)}

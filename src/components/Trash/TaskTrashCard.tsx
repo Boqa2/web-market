@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { CardSliderData } from "../Card/CardWomenImg";
 
-const TaskTrashCard = ({ title, card, size, price }: CardSliderData) => {
-  const [prices, setPrices] = useState<number | string>(price)
+const TaskTrashCard = ({ title, card, size, price, handleFavorite, handleHeart, trash, hearts }: CardSliderData) => {
+  const [prices, setPrices] = useState<number>(price)
   return (
     <div className=" rounded-lg  p-4 w-full shadow-md">
       <div className="flex w-full gap-5">
@@ -18,15 +18,15 @@ const TaskTrashCard = ({ title, card, size, price }: CardSliderData) => {
             </div>
           </div>
           <div className="flex gap-5">
-            <div className="flex h-9 text-xl items-center bg-gray-400 rounded-lg">
-              <button onClick={()=>setPrices("prices" + 2)} className="w-9 h-full bg-slate-300 font-medium rounded-l-lg">+</button>
+            <div className="flex h-7 text-xl items-center bg-slate-300 rounded-lg">
+              <button onClick={()=>setPrices(price + price )} className="w-9 h-full font-medium rounded-l-lg">+</button>
               <div className="px-3">-12</div>
-              <button className="w-9 h-full bg-slate-300 font-medium rounded-r-lg">-</button>
+              <button className="w-9 h-full font-medium rounded-r-lg">-</button>
             </div>
             <div>{prices}</div>
             <div className="flex flex-col gap-3">
-              <button><i className="bx bx-heart"></i></button>
-              <button><i className="bx bx-trash"></i></button>
+              <button onClick={handleHeart} ><i className={`bx ${hearts ? "text-red-500" : ""} bx-heart`}></i></button>
+              <button onClick={handleFavorite}><i className={`bx bxs-${trash ? "trash" : "trash-alt"}`}></i></button>
             </div>
           </div>
         </div>
