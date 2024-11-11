@@ -4,15 +4,18 @@ import SideBar from "./SideBar";
 import "boxicons/css/boxicons.min.css";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useNotification } from "../Libs/Notification";
 
 const Header = () => {
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
   const [input, setInput] = useState<boolean>(false);
+  const { notificationCount } = useNotification();
+  const { korzina } =useNotification()
   const { register } = useForm();
   
   return (
-    <div className="p-3 container">
-      <header className="flex text-2xl items-center mb-3 justify-between ">
+    <div className="p-1 sticky  mx-auto shadow-xl right-0 top-0 z-[999] mb-5  px-5 bg-gray-200  container">
+      <header className="flex  text-2xl items-center justify-between ">
         <div className="flex gap-2 font-semibold items-center text-xl">
           <button className="text-3xl" onClick={() => setOpenSidebar(true)}>
             <i className="bx bx-menu"></i>
@@ -23,7 +26,7 @@ const Header = () => {
         </div>
         <div className="py-3">
           {!input ? (
-            <div className="flex justify-center w-full justify-start">
+            <div className="flex justify-center w-full ">
               <img  src={Logo.urllogo} alt="" />
             </div>
           ) : (
@@ -46,32 +49,18 @@ const Header = () => {
           <button onClick={() => setInput(true)}>
             <i className="bx bx-search-alt"></i>
           </button>
-          <Link to={"/favorites"}>
+          <Link className="relative" to={"/favorites"}>
+          {notificationCount > 0 ? (<span className="notfiction">{notificationCount}</span>) : ""}
+            
             <i className="bx bx-heart"></i>
           </Link>
-          <Link to={"/trash"}>
+          <Link className="relative" to={"/trash"}>
+          {korzina > 0 ? (<span className="notfiction">{korzina}</span>) : ""}
             <i className="bx bx-cart-alt"></i>
           </Link>
         </div>
       </header>
       {openSidebar && <SideBar openSidebar={() => setOpenSidebar(false)} />}
-      <div className="border border-slate-300 "></div>
-      <div className="flex justify-center my-2 mt-3 text-slate-900 text-lg font-medium items-center  gap-3">
-        <a
-          className="hover:text-slate-500
-          "
-          href=""
-        >
-          Женшинам
-        </a>
-        <a
-          className="hover:text-slate-500
-          "
-          href=""
-        >
-          Мужчинам
-        </a>
-      </div>
     </div>
   );
 };

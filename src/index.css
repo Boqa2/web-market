@@ -6,4 +6,7 @@
     .hover{
         @apply hover:text-slate-500 cursor-pointer
     }
+    .notfiction{
+        @apply absolute text-white text-center top-0 right-[-8px] text-xs bg-red-500 w-4 h-4 rounded-[50%]
+    }
 }

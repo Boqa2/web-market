@@ -11,6 +11,7 @@ import CardAboutWomen from "./components/Card/CardAboutWomen";
 import CardAboutMen from "./components/Card/CardAboutMen";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import { NotificationProvider } from "./components/Libs/Notification";
 
 const router = createBrowserRouter([
   {
@@ -46,8 +47,10 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <NotificationProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </NotificationProvider>
   </StrictMode>
 );

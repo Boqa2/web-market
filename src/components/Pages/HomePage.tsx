@@ -1,14 +1,13 @@
 import { useState } from "react";
-import CardImg from "../Card/CardWomenImg";
 import CardSlider from "../Slider/CardSlider";
 import CardWomenImg from "../Card/CardWomenImg";
 import CardMenImg from "../Card/CardMenImg";
+import { useNotification } from "../Libs/Notification";
 
 const HomePage = () => {
   const [btn, setBtn] = useState<boolean>(true);
   const [btn2, setBtn2] = useState<boolean>(false);
-  const [url, setUrl] = useState<boolean>(false);
-
+  const { url, setUrl } = useNotification();
   const handleBorder = (buttonType: string) => {
     if (buttonType === "men") {
       setBtn(true);
@@ -26,7 +25,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="flex container md:w-full flex-col gap-10">
+    <div className="flex container mx-auto md:w-full flex-col  gap-10">
       <div className="relative z-0">
         <CardSlider />
       </div>
@@ -48,10 +47,7 @@ const HomePage = () => {
           Женшины
         </button>
       </div>
-      <div className="">
-        {!url ? <CardWomenImg /> : <CardMenImg /> }
-        
-      </div>
+      <div className="">{url ? <CardWomenImg /> : <CardMenImg />}</div>
     </div>
   );
 };
