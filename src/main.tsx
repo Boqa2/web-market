@@ -12,6 +12,7 @@ import CardAboutMen from "./components/Card/CardAboutMen";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import { NotificationProvider } from "./components/Libs/Notification";
+import OrderPage from "./components/Pages/OrderPage";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,9 @@ const router = createBrowserRouter([
         path: "login",
         element: <LoginPage />,
       },
+      {path: "order",
+        element: <OrderPage />
+      }
     ],
   },
 ]);

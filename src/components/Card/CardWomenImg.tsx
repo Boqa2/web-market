@@ -3,6 +3,7 @@ import TaskForCard from "./TaskForCard";
 import toast from "react-hot-toast";
 import { useGetwomencardQuery, useUpdatecardMutation } from "../api/apiGetAll";
 import { useNotification } from "../Libs/Notification";
+import { HashLoader } from "react-spinners";
 
 export type CardSliderData = {
   id: number;
@@ -73,9 +74,11 @@ const CardWomenImg = () => {
   };
 
   return (
-    <div className="grid grid-cols-4 gap-10 px-9">
+    <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-10 px-10">
       {isLoading ? (
-        <>Loading...</>
+         <div className="grid place-items-center">
+         <HashLoader   loading={true} size={50} />
+     </div>
       ) : error ? (
         <>Error loading data</>
       ) : data && data.length > 0 ? (

@@ -18,15 +18,15 @@ const TaskForCard = ({
     <div className="relative container">
       <Link
         to={`${url ? "card4women" : "cardimgs"}/${id}`}
-        className="space-y-3"
+        className=""
       >
-        <div className="relative clear-start text-[20px]">
-          <img className="rounded-lg shadow-2xl" src={card} alt="" />
+        <div className="relative h-[80%] text-[20px]">
+          <img className="rounded-lg h-full w-full shadow-2xl" src={card} alt="" />
         </div>
         <div className="px-2">
           <p>{title}</p>
-          <div className="flex  justify-between items-center ">
-            <p className="font-medium text-lg">{price}</p>
+          <div className="flex justify-between items-center ">
+            <p className="text-lg">{price} $</p>
           </div>
         </div>
       </Link>
@@ -42,8 +42,8 @@ const TaskForCard = ({
           }-heart`}
         ></i>
       </button>
-      <button onClick={handleFavorite} className="w-9 right-1 bottom-0 absolute text-white h-9 rounded-[50%] hover:bg-[#fa7c7e] bg-[#ff6163]">
-        <i className={`bx bx-cart${!trash ? "-add" : ""}`}></i>
+      <button onClick={handleFavorite} className="w-9 right-2 bottom-0 absolute text-white h-9 rounded-[50%] hover:bg-[#fa7c7e] bg-[#ff6163]">
+        <i className={`bx bx-cart${trash ? "-add" : ""}`}></i>
       </button>
     </div>
   );

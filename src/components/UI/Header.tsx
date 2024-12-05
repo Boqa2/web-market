@@ -14,9 +14,9 @@ const Header = () => {
   const { register } = useForm();
   
   return (
-    <div className="p-1 sticky  mx-auto shadow-xl right-0 top-0 z-[999] mb-5  px-5 bg-gray-200  container">
-      <header className="flex  text-2xl items-center justify-between ">
-        <div className="flex gap-2 font-semibold items-center text-xl">
+    <div className="p-1 sticky  shadow-xl right-0 top-0 z-[999] mb-5  px-5 bg-gray-200 ">
+      <header className="flex container mx-auto gap-6 text-2xl items-center md:pl-0 pl-5 justify-between ">
+        <div className="flex md:order-none order-3 gap-2 font-semibold items-center text-xl">
           <button className="text-3xl" onClick={() => setOpenSidebar(true)}>
             <i className="bx bx-menu"></i>
           </button>

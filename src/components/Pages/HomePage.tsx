@@ -17,9 +17,9 @@ const HomePage = () => {
       setBtn2(true);
     }
 
-    if (url) {
+    if (buttonType === "men") {
       setUrl(false);
-    } else {
+    } else if(buttonType === "women") {
       setUrl(true);
     }
   };

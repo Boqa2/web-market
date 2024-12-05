@@ -8,6 +8,7 @@ import {
 import { useNotification } from "../Libs/Notification";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { HashLoader } from "react-spinners";
 
 // interface CardData {
 //   id: string;
@@ -95,7 +96,9 @@ const CardAboutWomen = () => {
   return (
     <div>
       {isLoading ? (
-        <>Loading...</>
+         <div className="grid place-items-center">
+         <HashLoader   loading={true} size={50} />
+     </div>
       ) : error ? (
         <>Failed to fetch data</>
       ) : data ? (

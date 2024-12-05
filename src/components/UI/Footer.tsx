@@ -13,7 +13,7 @@ const Footer = () => {
           <i className="bx bxl-instagram"></i>
         </div>
       </div>
-        <div className="flex mt-10 justify-between items-center">
+        <div className="flex mt-10 justify-between flex-col md:flex-row items-center">
             <p>© 2020 Любое использование контента без письменного разрешения запрещено</p>
             <p>Интернет-магазин создан на React</p>
         </div>

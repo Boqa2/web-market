@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 
 const Louyot = () => {
     return ( 
-        <div>
+        <div className="m-0 p-0">
             <Header />
             <Outlet />
             <Toaster/>

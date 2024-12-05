@@ -59,8 +59,8 @@ const TaskCard = ({
     }
   };
   return (
-    <div className="flex  px-10 gap-5 w-full">
-      <div className="w-full flex gap-6">
+    <div className="flex  items-center md:items-baseline px-10 gap-5 w-full">
+      <div className="w-full flex-col md:flex-row flex gap-6">
         <div className="shadow-2xl w-1/2">
           <img className="w-full rounded-md" src={card} alt="" />
         </div>

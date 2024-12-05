@@ -64,7 +64,7 @@ const CardSlider = () => {
   };
 
   return (
-    <div className="px-8 container w-full md:h-full h-[1000px] ">
+    <div className="px-8 container w-full md:h-full h-auto">
       <div className="overflow-hidden ">
         <Slider {...settings}>
           {loading ? (

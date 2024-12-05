@@ -13,9 +13,11 @@ import { useRef, useState } from "react";
 import TrashSticy from "../Trash/TrashSticy";
 import { useNotification } from "../Libs/Notification";
 import toast from "react-hot-toast";
+import { HashLoader } from "react-spinners";
+import { CardSliderData } from "../Card/CardWomenImg";
 
 const TrashPage = () => {
-  const { data: Cardwomen, } = useGetwomencardQuery();
+  const { data: Cardwomen } = useGetwomencardQuery();
   const { data: Cardmen, isLoading, error } = useGetallcardQuery();
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef<Slider>(null);
@@ -32,12 +34,47 @@ const TrashPage = () => {
     speed: 100,
     slidesToShow: 4,
     slidesToScroll: 2,
+    responsive: [
+      {
+        breakpoint: 1024, // Экран <= 1024px
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768, // Экран <= 768px
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480, // Экран <= 480px
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
     draggable: true, // Включаем перетаскивание мышкой
     swipeToSlide: true, // Включаем возможность перетаскивания слайда мышкой
     beforeChange: (current: number, next: number) => setCurrentIndex(next),
   };
+
+  const calculateTotalPrice = (items: CardSliderData[]) => {
+    return items
+      .filter((task) => task.trash === true) // Фильтруем только те элементы, у которых trash === true
+      .reduce((total, task) => total + (task.price || 0), 0); // Суммируем цену
+  };
+
+  const calcWom = Cardwomen ? calculateTotalPrice(Cardwomen) : 0
+  const calcMen = Cardmen ? calculateTotalPrice(Cardmen) : 0
+
+  const calcSum =  calcMen + calcWom
+
   const handleHeartChange = async (id: number) => {
-    const current = heart[id] || false
+    const current = heart[id] || false;
     try {
       await updateCard({
         id,
@@ -45,7 +82,9 @@ const TrashPage = () => {
       }).unwrap();
       setHeart({ ...heart, [id]: !current });
       setNotificationCount(notificationCount - 1);
-      toast.success(`Task ${!current ? "removed" : "added"} favorites`, { position: "top-right" });
+      toast.success(`Task ${!current ? "removed" : "added"} favorites`, {
+        position: "top-right",
+      });
     } catch (error) {
       console.error("Failed to update heart status:", error);
     }
@@ -53,7 +92,7 @@ const TrashPage = () => {
   const favorites = async (id: number) => {
     try {
       await updateCard({ id, body: { trash: false } });
-      setFavorite({ ...favorite, [id]: false});
+      setFavorite({ ...favorite, [id]: false });
       setKorzina(korzina - 1);
       toast.success(`Task removed trash`, { position: "top-right" });
     } catch (error) {
@@ -61,14 +100,14 @@ const TrashPage = () => {
     }
   };
   return (
-    <div className="px-10 container mx-auto">
+    <div className="px-10 ">
       <h1 className="text-3xl font-semibold text-gray-700 font-mono my-7">
         Карзина
       </h1>
-      <div className="flex relative gap-4">
-        <div className="flex flex-col gap-5 w-3/4">
+      <div className="flex w-full flex-col md:flex-row relative gap-4">
+        <div className="flex flex-col gap-5 w-full md:w-3/4">
           {isLoading ? (
-            <>Loading</>
+            ""
           ) : error ? (
             <>Fetch loading error</>
           ) : Cardmen ? (
@@ -100,7 +139,12 @@ const TrashPage = () => {
             <></>
           )}
           {isLoading ? (
-            <></>
+            <>
+              {" "}
+              <div className="grid place-items-center">
+                <HashLoader loading={true} size={50} />
+              </div>
+            </>
           ) : error ? (
             <>Fetch loading error</>
           ) : Cardwomen ? (
@@ -121,11 +165,11 @@ const TrashPage = () => {
             <>No found </>
           )}
         </div>
-        <div className="relative w-1/4">
-          <TrashSticy />
+        <div className="relative w-full md:w-1/4">
+          <TrashSticy prices={calcSum} />
         </div>
       </div>
-      <div className="">
+      <div className="py-5">
         <div className="overflow-hidden">
           <h1 className="text-3xl font-semibold text-gray-700 font-mono">
             Каталог
@@ -146,12 +190,14 @@ const TrashPage = () => {
               <i className="bx bx-right-arrow-alt"></i>
             </button>
           </div>
-          <Slider ref={sliderRef} {...settings} className="flex gap-5">
+          <Slider ref={sliderRef} {...settings} className="flex h-full gap-10">
             {!Cardmen ? (
-              <>loading</>
+              <div className="grid place-items-center">
+                <HashLoader loading={true} size={50} />
+              </div>
             ) : (
               Cardmen.map((task) => (
-                <div key={task.id} className="px-5">
+                <div className="px-5" key={task.id}>
                   <TaskForCard
                     trash={task.trash}
                     about={task.about}
