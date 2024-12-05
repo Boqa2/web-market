@@ -32,7 +32,8 @@ const CardSlider = () => {
 
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
+
     speed: 500,
     slidesToShow: 5, // Базовое количество слайдов
     slidesToScroll: 1,

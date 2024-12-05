@@ -1,13 +1,10 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { CardSliderData } from "../Card/CardWomenImg";
-type props = {
-  orders: number,
-  notOrders:number
-}
-const LoginOrderPage = ({orders, notOrders}:props) => {
+import { CardSliderData } from "../Libs/type/types";
+import { useNotification } from "../Libs/Notification";
+
+const LoginOrderPage = () => {
   const {register, handleSubmit, formState:{errors}}=useForm<CardSliderData>()
-  const [textValue, setTextValue]=useState<string>("")
+  const { setOrders }=useNotification()
   const sumbit =(data:CardSliderData)=>{
     // Извлекаем данные из localStorage
   const existingData = localStorage.getItem("produkt");
@@ -52,7 +49,7 @@ const LoginOrderPage = ({orders, notOrders}:props) => {
                 <p>
                   Контактный телефон <span className="text-red-500">*</span>
                 </p>
-                <input  {...register("number", {required: "Enter this role"})}  type="number" className="input" />
+                <input  {...register("title", {required: "Enter this role"})}  type="number" className="input" />
               </label>
             </div>
           </div>
@@ -60,7 +57,7 @@ const LoginOrderPage = ({orders, notOrders}:props) => {
         <div>
           <p>Доставка</p>
           <div className="space-y-4">
-            <label className="label">
+            <button type="button" onClick={()=>setOrders(0)} className="label">
               <input
                 type="radio"
                 name="delivery"
@@ -71,17 +68,17 @@ const LoginOrderPage = ({orders, notOrders}:props) => {
                 <span className="text-lg font-medium">Самовывоз</span>
                 <p className="text-gray-500">На пункте выдачи</p>
               </div>
-              <span className="ml-auto text-lg font-bold">+ {notOrders} ₽</span>
-            </label>
+              <span className="ml-auto text-lg font-bold">+ 0 ₽</span>
+            </button>
 
-            <label className="label">
+            <button type="button" onClick={()=>setOrders(300)} className="label">
               <input defaultChecked type="radio" name="delivery" className="radio" />
               <div>
                 <span className="text-lg font-medium">Курьером</span>
                 <p className="text-gray-500">Доставка курьером</p>
               </div>
-              <span className="ml-auto text-lg font-bold">+ {orders} ₽</span>
-            </label>
+              <span className="ml-auto text-lg font-bold">+ 300 ₽</span>
+            </button>
           </div>
         </div>
         <div className="h-full ">
@@ -96,7 +93,7 @@ const LoginOrderPage = ({orders, notOrders}:props) => {
           <p>Покупатель</p>
           <label htmlFor="" className=" flex-col items-start gap-2">
             <p>Email <span className="text-red-500">*</span></p>
-            <input  {...register("email", {required: "Enter this role"})}  className="input" type="email" />
+            <input  {...register("title", {required: "Enter this role"})}  className="input" type="email" />
             <p>{errors.root?.message}</p>
           </label>
         </div>
@@ -104,13 +101,13 @@ const LoginOrderPage = ({orders, notOrders}:props) => {
           <p>
             Способ оплаты<span className="text-red-500"> *</span>
           </p>
-          <label className="label">
+          <button type="button" onClick={()=>setOrders(300)} className="label">
             <input defaultChecked type="radio" name="delivery" className="radio" />
             <div>
               <span className="text-lg font-medium">Наличными курьер</span>
               <p className="text-gray-500">Наличнами курьер</p>
             </div>
-          </label>
+          </button>
         </div>
         <div>
           <button className="bg-red-500 w-full h-12 rounded-lg text-white">

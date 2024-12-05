@@ -8,7 +8,7 @@ import { HashLoader } from "react-spinners";
 
 const CardAboutMen = () => {
   const { id } = useParams<{ id: string }>();
-  const { data, isLoading, error } = useGetcardQuery(id);
+  const { data, isLoading, error } = useGetcardQuery(id!);
   const [chengeSize] = useUpdatemencardMutation();
   const { notificationCount, setNotificationCount, setSizes } =
     useNotification();

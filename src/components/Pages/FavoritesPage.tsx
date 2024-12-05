@@ -1,9 +1,7 @@
 import { useState } from "react";
 import TaskForCard from "../Card/TaskForCard";
 import {
-  useGetallcardQuery,
-  useGetwomencardQuery,
-  useUpdatecardMutation,
+  useGetFavoriteCardQuery,
   useUpdatemencardMutation,
 } from "../api/apiGetAll";
 import { useNotification } from "../Libs/Notification";
@@ -15,24 +13,16 @@ const FavoritesPage = () => {
     data: Cardmen,
     isLoading: Cardloadmen,
     error: Carderrmen,
-  } = useGetallcardQuery();
-  const {
-    data: Cardwomen,
-    isLoading: Cardloadwomen,
-    error: Carderrwomen,
-  } = useGetwomencardQuery();
+  } = useGetFavoriteCardQuery({value:"hearts", gender: true });
   const [hearts, setHearts] = useState<{ [id: number]: boolean }>({});
-  const [cardwomen] = useUpdatecardMutation();
   const [cardmen] = useUpdatemencardMutation();
   const [favorite, setFavorite] = useState<{ [id: number]: boolean }>({});
-  const { notificationCount, setNotificationCount, url, korzina, setKorzina } =
+  const { notificationCount, setNotificationCount, korzina, setKorzina } =
     useNotification();
-  const updateCard = url ? cardwomen : cardmen;
-
   const handleHeartChange = async (id: number) => {
     // console.log(`Current status of ${id}:`, currentStatus);
     try {
-      await updateCard({
+      await cardmen({
         id,
         body: { hearts: false },
       }).unwrap();
@@ -48,7 +38,7 @@ const FavoritesPage = () => {
   };
   const favorites = async (id: number) => {
     try {
-      await updateCard({ id, body: { trash: false } });
+      await cardmen({ id, body: { trash: false } });
       setFavorite({ ...favorite, [id]: false });
       setKorzina(korzina - 1);
 
@@ -65,43 +55,13 @@ const FavoritesPage = () => {
         </div>
         <div className="xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 grid gap-10 px-2">
           {Cardloadmen ? (
-            ""
-          ) : Carderrmen ? (
-            <>Fetch loading error</>
-          ) : Cardmen ? (
-            Cardmen.filter((task) => task.hearts === true).map((tasks) => (
-              <TaskForCard
-                trash={
-                  favorite[tasks.id] !== undefined
-                    ? favorite[tasks.id]
-                    : tasks.trash
-                }
-                handleFavorite={() => favorites(tasks.id)}
-                handleHeart={() => handleHeartChange(tasks.id)}
-                hearts={
-                  hearts[tasks.id] !== undefined
-                    ? hearts[tasks.id]
-                    : tasks.hearts
-                }
-                id={tasks.id}
-                key={tasks.id}
-                title={tasks.title}
-                card={tasks.card}
-                price={tasks.price}
-                about={tasks.about}
-              />
-            ))
-          ) : (
-            <></>
-          )}
-          {Cardloadwomen ? (
             <div className="grid place-items-center">
               <HashLoader loading={true} size={50} />
             </div>
-          ) : Carderrwomen ? (
+          ) : Carderrmen ? (
             <>Fetch loading error</>
-          ) : Cardwomen ? (
-            Cardwomen.filter((task) => task.hearts === true).map((tasks) => (
+          ) : Cardmen ? (
+            Cardmen.map((tasks) => (
               <TaskForCard
                 trash={
                   favorite[tasks.id] !== undefined

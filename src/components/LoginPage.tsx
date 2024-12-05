@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Logo from "./Libs/urls";
-import { useState } from "react";
 
 type FormValues = {
   email: string;
 };
 
-const LoginPage = () => {
-  const [error, setError] = useState<string | null>(null);
+const LoginPage = () => {  
   const {
     register,
     handleSubmit,
@@ -24,9 +22,9 @@ const LoginPage = () => {
     
     try {
       await axios.post(`${Logo.urlTask}/users`, { email: data.email });
-      await axios.post("http://localhost:5000/users", { email: data.email, code });
+      await axios.post("http://localhost:5000/users", { email: data.email, code })
     } catch (error) {
-      setError(error.message);
+      console.error(error);      
     }
   };
 

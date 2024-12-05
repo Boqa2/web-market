@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CardSliderData } from "../Card/CardWomenImg";
+import { CardSliderData } from "../Libs/type/types";
 
 const TaskTrashCard = ({
   title,

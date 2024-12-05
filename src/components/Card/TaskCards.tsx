@@ -72,7 +72,7 @@ const TaskCard = ({
             <p className="text-xl font-semibold">{title}</p>
           </div>
           <div>
-            <p className="text-4xl font-semibold">{price}</p>
+            <p className="text-3xl font-semibold">{price} $</p>
           </div>
           <div className="space-y-2 ">
             <p className="text-lg">Размер</p>

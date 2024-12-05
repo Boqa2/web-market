@@ -1,11 +1,12 @@
 import { HashLoader } from "react-spinners";
-import { useGetallcardQuery, useGetwomencardQuery } from "../api/apiGetAll";
+import { useGetFavoriteCardQuery } from "../api/apiGetAll";
 import TasksOrderCard from "./TasksOrderCard";
-import { CardSliderData } from "../Card/CardWomenImg";
+import { CardSliderData } from "../Libs/type/types";
+import { useNotification } from "../Libs/Notification";
 
 const TaskOrder = () => {
-  const { data: Cardmen, isLoading, error } = useGetallcardQuery();
-  const { data: Cardwomen } = useGetwomencardQuery();
+  const { data: Cardmen, isLoading, error } = useGetFavoriteCardQuery({value:"trash", gender: true });
+  const {orders} =useNotification()
 
   // Функция для вычисления общей суммы
   const calculateTotalPrice = (items: CardSliderData[]) => {
@@ -13,27 +14,13 @@ const TaskOrder = () => {
       .filter((task) => task.trash === true) // Фильтруем только те элементы, у которых trash === true
       .reduce((total, task) => total + (task.price || 0), 0); // Суммируем цену
   };
-  const calcWom = Cardwomen ? calculateTotalPrice(Cardwomen) : 0;
   const calcMen = Cardmen ? calculateTotalPrice(Cardmen) : 0;
 
-  const calcSum = calcMen + calcWom;
 
   return (
     <div className="">
       <div>
         <div className="space-y-3">
-          {Cardwomen &&
-            Cardwomen.filter((task) => task.trash === true).map((tasks) => (
-              <TasksOrderCard
-                card={tasks.card}
-                title={tasks.title}
-                id={tasks.id}
-                key={tasks.id}
-                price={tasks.price}
-                about={tasks.about}
-                trash={tasks.trash}
-              />
-            ))}
           {isLoading ? (
             <div className="grid place-items-center">
               <HashLoader loading={true} size={50} />
@@ -42,7 +29,7 @@ const TaskOrder = () => {
             <p>console.error(error)</p>
           ) : (
             Cardmen &&
-            Cardmen.filter((task) => task.trash === true).map((tasks) => (
+            Cardmen.map((tasks) => (
               <TasksOrderCard
                 card={tasks.card}
                 title={tasks.title}
@@ -58,18 +45,18 @@ const TaskOrder = () => {
         <div>
           <div className="flex  items-center justify-between">
             <p>Сумма по товарам:</p>
-            <span className="text-xl">{calcSum} $</span>
+            <span className="text-xl">{calcMen} $</span>
           </div>
-          <div>
+          <div className="flex justify-between">
             <p>Стоимость доставки:</p>
-            <span>Введите стоимость доставки</span>
+            <span className="text-xl">{orders} $</span>
           </div>
         </div>
-        <div>
+        <div className="w-full h-0.5 bg-gray-400"></div>
+        <div className="flex text-xl  justify-between">
           <p>Итоги:</p>
-          <span>
-            {/* Общая сумма товаров + стоимость доставки */}
-            {calcSum} $
+          <span >
+            {calcMen + orders} $
           </span>
         </div>
       </div>

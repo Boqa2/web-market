@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 type props = {
-  prices: number
+  prices: number,
+  lengt:number
 } 
-const TrashSticy = ({prices}:props) => {
+const TrashSticy = ({prices, lengt}:props) => {
   return (
     <div className="sticky top-24 w-full rounded-lg p-4 bg-slate-300">
       <div className="space-y-5 ">
         <div className="font-medium">
           <div className="flex justify-between">
-            <p>Товары(0)</p>
+            <p>Товары({lengt})</p>
             <p>{prices} $</p>
           </div>
           <div className="flex justify-between">

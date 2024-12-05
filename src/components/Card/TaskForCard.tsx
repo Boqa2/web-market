@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { CardSliderData } from "./CardWomenImg";
-import { useNotification } from "../Libs/Notification";
+import { CardSliderData } from "../Libs/type/types";
 
 const TaskForCard = ({
   title,
@@ -12,12 +11,11 @@ const TaskForCard = ({
   handleHeart,
   handleFavorite,
 }: CardSliderData) => {
-  const {url}= useNotification()
 
   return (
     <div className="relative container">
       <Link
-        to={`${url ? "card4women" : "cardimgs"}/${id}`}
+        to={`cardimgs/${id}`}
         className=""
       >
         <div className="relative h-[80%] text-[20px]">

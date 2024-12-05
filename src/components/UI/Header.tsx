@@ -10,9 +10,9 @@ const Header = () => {
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
   const [input, setInput] = useState<boolean>(false);
   const { notificationCount } = useNotification();
-  const { korzina } =useNotification()
+  const { korzina } = useNotification();
   const { register } = useForm();
-  
+
   return (
     <div className="p-1 sticky  shadow-xl right-0 top-0 z-[999] mb-5  px-5 bg-gray-200 ">
       <header className="flex container mx-auto gap-6 text-2xl items-center md:pl-0 pl-5 justify-between ">
@@ -26,9 +26,9 @@ const Header = () => {
         </div>
         <div className="py-3">
           {!input ? (
-            <div className="flex justify-center w-full ">
-              <img  src={Logo.urllogo} alt="" />
-            </div>
+            <Link to={"/"} className="flex justify-center w-full ">
+              <img src={Logo.urllogo} alt="" />
+            </Link>
           ) : (
             <div className="relative">
               <input
@@ -50,12 +50,11 @@ const Header = () => {
             <i className="bx bx-search-alt"></i>
           </button>
           <Link className="relative" to={"/favorites"}>
-          {notificationCount > 0 ? (<span className="notfiction">{notificationCount}</span>) : ""}
-            
+            {notificationCount ? <span className="notfiction">{notificationCount}</span> : ""}
             <i className="bx bx-heart"></i>
           </Link>
           <Link className="relative" to={"/trash"}>
-          {korzina > 0 ? (<span className="notfiction">{korzina}</span>) : ""}
+            {korzina > 0 ? <span className="notfiction">{korzina}</span> : ""}
             <i className="bx bx-cart-alt"></i>
           </Link>
         </div>

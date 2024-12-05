@@ -1,13 +1,12 @@
 import { useState } from "react";
 import CardSlider from "../Slider/CardSlider";
-import CardWomenImg from "../Card/CardWomenImg";
 import CardMenImg from "../Card/CardMenImg";
 import { useNotification } from "../Libs/Notification";
 
 const HomePage = () => {
   const [btn, setBtn] = useState<boolean>(true);
   const [btn2, setBtn2] = useState<boolean>(false);
-  const { url, setUrl } = useNotification();
+  const { setUrl } = useNotification();
   const handleBorder = (buttonType: string) => {
     if (buttonType === "men") {
       setBtn(true);
@@ -18,9 +17,9 @@ const HomePage = () => {
     }
 
     if (buttonType === "men") {
-      setUrl(false);
-    } else if(buttonType === "women") {
-      setUrl(true);
+      setUrl("female");
+    } else if (buttonType === "women") {
+      setUrl("male");
     }
   };
 
@@ -47,7 +46,9 @@ const HomePage = () => {
           Женшины
         </button>
       </div>
-      <div className="">{url ? <CardWomenImg /> : <CardMenImg />}</div>
+      <div className="">
+        <CardMenImg />
+      </div>
     </div>
   );
 };
