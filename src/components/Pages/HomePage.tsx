@@ -2,6 +2,7 @@ import { useState } from "react";
 import CardSlider from "../Slider/CardSlider";
 import CardMenImg from "../Card/CardMenImg";
 import { useNotification } from "../Libs/Notification";
+import { useGetallcardQuery } from "../api/apiGetAll";
 
 const HomePage = () => {
   const [btn, setBtn] = useState<boolean>(true);
@@ -22,6 +23,10 @@ const HomePage = () => {
       setUrl("male");
     }
   };
+  const {data} = useGetallcardQuery()
+
+  console.log(data);
+  
 
   return (
     <div className="flex container mx-auto md:w-full flex-col  gap-10">

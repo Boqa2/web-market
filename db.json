@@ -51,8 +51,8 @@
         "mesto": "Турция",
         "sostav": "Кашемир"
       },
-      "hearts": false,
-      "trash": false
+      "hearts": true,
+      "trash": true
     },
     {
       "id": "2",
