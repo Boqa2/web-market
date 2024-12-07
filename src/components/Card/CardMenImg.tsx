@@ -22,11 +22,14 @@ const CardMenImg = () => {
         body: { hearts: !currentStatus },
       });
       setHearts({ ...hearts, [id]: !currentStatus });
-      if (currentStatus === false) {
+      if (!currentStatus) {
         setNotificationCount(notificationCount + 1);
-        toast.success("Task added to favorites",
-          { position: "bottom-right" })
+        toast.success(
+          `Task add to favorites`,
+          { position: "bottom-right" }
+        );
       }else{
+        setNotificationCount(notificationCount - 1)
         toast.error(
           `Task removed from favorites`,
           { position: "bottom-right" }

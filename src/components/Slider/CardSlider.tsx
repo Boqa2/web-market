@@ -33,8 +33,10 @@ const CardSlider = () => {
   const settings = {
     dots: false,
     infinite: true,
-
-    speed: 500,
+    autoplay: true,
+    speed: 7000,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
     slidesToShow: 5, // Базовое количество слайдов
     slidesToScroll: 1,
     draggable: true,

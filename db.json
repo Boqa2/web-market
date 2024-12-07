@@ -1,10 +1,4 @@
 {
-  "users": [
-    {
-      "id": "9308",
-      "email": "bobobaha02@gmail.com"
-    }
-  ],
   "cardslider": [
     {
       "id": "1",
@@ -57,8 +51,8 @@
         "mesto": "Турция",
         "sostav": "Кашемир"
       },
-      "hearts": true,
-      "trash": true
+      "hearts": false,
+      "trash": false
     },
     {
       "id": "2",
@@ -73,7 +67,7 @@
         "mesto": "Турция",
         "sostav": "Кашемир"
       },
-      "hearts": true,
+      "hearts": false,
       "trash": true
     },
     {
@@ -89,7 +83,7 @@
         "mesto": "Турция",
         "sostav": "Шёлк"
       },
-      "hearts": true,
+      "hearts": false,
       "trash": false
     },
     {

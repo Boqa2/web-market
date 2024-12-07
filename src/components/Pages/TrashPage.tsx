@@ -98,7 +98,7 @@ const TrashPage = () => {
   };
   const cardlength = Cardmen ? Cardmen.length : 0
   return (
-    <div className="px-10 ">
+    <div className="px-10 h-full ">
       <h1 className="text-3xl font-semibold text-gray-700 font-mono my-7">
         Карзина
       </h1>
@@ -109,7 +109,7 @@ const TrashPage = () => {
           ) : error ? (
             <>Fetch loading error</>
           ) : Cardmen ? (
-            Cardmen.filter((task) => task.trash === true).map((tasks) => (
+            Cardmen.map((tasks) => (
               <div className="relative">
                 <TaskTrashCard
                   handleFavorite={() => favorites(tasks.id)}
@@ -141,8 +141,8 @@ const TrashPage = () => {
           <TrashSticy lengt={cardlength} prices={calcMen} />
         </div>
       </div>
-      <div className="py-5">
-        <div className="overflow-hidden">
+      <div className="py-5 h-full">
+        <div className="overflow-hidden h-full">
           <h1 className="text-3xl font-semibold text-gray-700 font-mono">
             Каталог
           </h1>
@@ -171,6 +171,7 @@ const TrashPage = () => {
               Cardmens.map((task) => (
                 <div className="px-5" key={task.id}>
                   <TaskForCard
+                  key={task.id}
                     trash={task.trash}
                     about={task.about}
                     id={task.id}
