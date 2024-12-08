@@ -1,11 +1,11 @@
 import { HashLoader } from "react-spinners";
-import { useGetFavoriteCardQuery } from "../api/apiGetAll";
+import { useGetallcardQuery } from "../api/apiGetAll";
 import TasksOrderCard from "./TasksOrderCard";
 import { CardSliderData } from "../Libs/type/types";
 import { useNotification } from "../Libs/Notification";
 
 const TaskOrder = () => {
-  const { data: Cardmen, isLoading, error } = useGetFavoriteCardQuery({value:"trash", gender: true });
+  const { data: Cardmen, isLoading, error } = useGetallcardQuery()
   const {orders} =useNotification()
 
   // Функция для вычисления общей суммы
@@ -29,7 +29,7 @@ const TaskOrder = () => {
             <p>console.error(error)</p>
           ) : (
             Cardmen &&
-            Cardmen.map((tasks) => (
+            Cardmen.filter((task)=> task.trash===true).map((tasks) => (
               <TasksOrderCard
                 card={tasks.card}
                 title={tasks.title}

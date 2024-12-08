@@ -1,34 +1,11 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Logo from "../Libs/urls";
 import TaskSlider from "./TaskSlider";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-type CardSliderData = {
-  id: number;
-  urls: string;
-};
+import { useSliderQuery } from "../api/apiGetAll";
 
 const CardSlider = () => {
-  const [data, setData] = useState<CardSliderData[] | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    axios
-      .get(`${Logo.urlTask}/cardslider`)
-      .then((res) => {
-        setData(res.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Problem with axios", error);
-        setError("Failed to fetch data.");
-        setLoading(false);
-      });
-  }, []);
+  const { data, isLoading, error } = useSliderQuery();
 
   const settings = {
     dots: false,
@@ -70,10 +47,10 @@ const CardSlider = () => {
     <div className="px-8 container w-full md:h-full h-auto">
       <div className="overflow-hidden ">
         <Slider {...settings}>
-          {loading ? (
+          {isLoading ? (
             <>Loading...</>
           ) : error ? (
-            <>{error}</>
+            <>error</>
           ) : data && data.length > 0 ? (
             data.map((task) => <TaskSlider key={task.id} tasks={task.urls} />)
           ) : (

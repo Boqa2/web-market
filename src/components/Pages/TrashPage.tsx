@@ -3,27 +3,26 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TaskForCard from "../Card/TaskForCard";
 import {
-  useGetFavoriteCardQuery,
-  useUpdatemencardMutation,
+  useGetallcardQuery
 } from "../api/apiGetAll";
 import TaskTrashCard from "../Trash/TaskTrashCard";
 import { useRef, useState } from "react";
 import TrashSticy from "../Trash/TrashSticy";
-import { useNotification } from "../Libs/Notification";
-import toast from "react-hot-toast";
+// import { useNotification } from "../Libs/Notification";
+// import toast from "react-hot-toast";
 import { HashLoader } from "react-spinners";
 import { CardSliderData } from "../Libs/type/types";
 
 const TrashPage = () => {
-  const { data: Cardmen, isLoading, error } = useGetFavoriteCardQuery({value:"trash", gender: true });
-  const { data: Cardmens,  } = useGetFavoriteCardQuery({value:"katalog", gender: false });
+  const { data: Cardmen, isLoading, error } = useGetallcardQuery();
+  // const { data: Cardmens,  } = useGetFavoriteCardQuery({value:"katalog", gender: false });
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef<Slider>(null);
-  const [heart, setHeart] = useState<{ [id: number]: boolean }>({});
-  const [upcardmen] = useUpdatemencardMutation();
-  const [favorite, setFavorite] = useState<{ [id: number]: boolean }>({});
-  const { notificationCount, setNotificationCount, korzina, setKorzina } =
-    useNotification();
+  // const [heart, setHeart] = useState<{ [id: number]: boolean }>({});
+  // // const [upcardmen] = useUpdatemencardMutation();
+  // const [favorite, setFavorite] = useState<{ [id: number]: boolean }>({});
+  // const { notificationCount, setNotificationCount, korzina, setKorzina } =
+    // useNotification();
   const settings = {
     dots: false,
     infinite: false,
@@ -69,33 +68,33 @@ const TrashPage = () => {
   const calcMen = Cardmen ? calculateTotalPrice(Cardmen) : 0;
 
 
-  const handleHeartChange = async (id: number) => {
-    const current = heart[id] || false;
-    try {
-      await upcardmen({
-        id,
-        body: { hearts: !current },
-      }).unwrap();
-      setHeart({ ...heart, [id]: !current });
-      setNotificationCount(notificationCount + 1);
+  // const handleHeartChange = async (id: number) => {
+  //   const current = heart[id] || false;
+  //   try {
+  //     await upcardmen({
+  //       id,
+  //       body: { hearts: !current },
+  //     }).unwrap();
+  //     setHeart({ ...heart, [id]: !current });
+  //     setNotificationCount(notificationCount + 1);
 
-      toast.success(`Task ${!current ? "removed" : "added"} favorites`, {
-        position: "top-right",
-      });
-    } catch (error) {
-      console.error("Failed to update heart status:", error);
-    }
-  };
-  const favorites = async (id: number) => {
-    try {
-      await upcardmen({ id, body: { trash: false } });
-      setFavorite({ ...favorite, [id]: false });
-      setKorzina(korzina - 1);
-      toast.error(`Task removed in trash`, { position: "top-right" });
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     toast.success(`Task ${!current ? "removed" : "added"} favorites`, {
+  //       position: "top-right",
+  //     });
+  //   } catch (error) {
+  //     console.error("Failed to update heart status:", error);
+  //   }
+  // };
+  // const favorites = async (id: number) => {
+  //   try {
+  //     await upcardmen({ id, body: { trash: false } });
+  //     setFavorite({ ...favorite, [id]: false });
+  //     setKorzina(korzina - 1);
+  //     toast.error(`Task removed in trash`, { position: "top-right" });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const cardlength = Cardmen ? Cardmen.length : 0
   return (
     <div className="px-10 h-full ">
@@ -109,28 +108,28 @@ const TrashPage = () => {
           ) : error ? (
             <>Fetch loading error</>
           ) : Cardmen ? (
-            Cardmen.map((tasks) => (
+            Cardmen.filter((task) => task.trash === true).map((tasks) => (
               <div className="relative">
                 <TaskTrashCard
-                  handleFavorite={() => favorites(tasks.id)}
-                  handleHeart={() => handleHeartChange(tasks.id)}
-                  hearts={
-                    heart[tasks.id] || undefined
-                      ? heart[tasks.id]
-                      : tasks.hearts
-                  }
-                  trash={
-                    favorite[tasks.id] !== undefined
-                      ? favorite[tasks.id]
-                      : tasks.trash
-                  }
+                
+                  // handleFavorite={() => favorites(tasks.id)}
+                  // handleHeart={() => handleHeartChange(tasks.id)}
+                  // hearts={
+                  //   heart[tasks.id] || undefined
+                  //     ? heart[tasks.id]
+                  //     : tasks.hearts
+                  // }
+                  // trash={
+                  //   favorite[tasks.id] !== undefined
+                  //     ? favorite[tasks.id]
+                  //     : tasks.trash
+                  // }
                   id={tasks.id}
                   key={tasks.id}
                   title={tasks.title}
                   card={tasks.card}
                   price={tasks.price}
-                  about={tasks.about}
-                />
+                  about={tasks.about} trash={false}                />
               </div>
             ))
           ) : (
@@ -157,18 +156,18 @@ const TrashPage = () => {
             <button
               className="text-3xl disabled:text-[#ee8f90] hover:text-[#ee8f90]"
               onClick={() => sliderRef.current?.slickNext()}
-              disabled={currentIndex >= (Cardmens ? Cardmens.length - 1 : 0)}
+              disabled={currentIndex >= (Cardmen ? Cardmen.length - 1 : 0)}
             >
               <i className="bx bx-right-arrow-alt"></i>
             </button>
           </div>
           <Slider ref={sliderRef} {...settings} className="flex h-full gap-10">
-            {!Cardmens ? (
+            {!Cardmen ? (
               <div className="grid place-items-center">
                 <HashLoader loading={true} size={50} />
               </div>
             ) : (
-              Cardmens.map((task) => (
+              Cardmen.map((task) => (
                 <div className="px-5" key={task.id}>
                   <TaskForCard
                   key={task.id}

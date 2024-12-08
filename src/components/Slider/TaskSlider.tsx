@@ -1,5 +1,5 @@
 type Props = {
-    tasks: string,
+    tasks: string | undefined,
 }
 const TaskSlider = ({ tasks }: Props) => {
     return ( 

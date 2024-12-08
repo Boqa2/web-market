@@ -32,7 +32,7 @@ const TaskForCard = ({
         onClick={handleHeart}
         className={`absolute rounded-[50%] bg-[#f9fafa] w-9 h-9 ${
           hearts ? "bg-opacity-100" : "bg-opacity-55"
-        } top-1 items-center flex justify-center right-1`}
+        } top-3 items-center flex justify-center right-3`}
       >
         <i
           className={`bx  ${hearts ? "text-red-600" : ""} ${
@@ -40,7 +40,7 @@ const TaskForCard = ({
           }-heart`}
         ></i>
       </button>
-      <button onClick={handleFavorite} className="w-9 right-2 bottom-0 absolute text-white h-9 rounded-[50%] hover:bg-[#fa7c7e] bg-[#ff6163]">
+      <button onClick={handleFavorite} className="w-9 right-3 bottom-0 absolute text-white h-9 rounded-[50%] hover:bg-[#fa7c7e] bg-[#ff6163]">
         <i className={`bx bx-cart${trash ? "-add" : ""}`}></i>
       </button>
     </div>
