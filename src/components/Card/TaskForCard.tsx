@@ -13,16 +13,16 @@ const TaskForCard = ({
 }: CardSliderData) => {
 
   return (
-    <div className="relative container">
+    <div className="relative container mb-4">
       <Link
         to={`cardimgs/${id}`}
         className=""
       >
-        <div className="relative aspect-[9/13] object-contain h-[80%] text-[20px]">
+        <div className="relative h-[80%] text-[20px]">
           <img className="rounded-lg h-full w-full shadow-2xl" src={card} alt="" />
         </div>
         <div className="px-2">
-          <p className="text-xl font-normal">{title}</p>
+          <p className="text-sm md:text-xl font-normal">{title}</p>
           <div className="flex justify-between items-center ">
             <p className="text-lg">{price} $</p>
           </div>

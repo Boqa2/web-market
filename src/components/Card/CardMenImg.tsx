@@ -57,7 +57,7 @@ const CardMenImg = () => {
     }
   };
   return (
-    <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-10 px-2 md:px-9">
+    <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-5 px-2 md:px-9">
       {isLoading ? (
         <div className="grid place-items-center">
           <HashLoader loading={true} size={50} />
