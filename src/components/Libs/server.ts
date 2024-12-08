@@ -28,6 +28,8 @@ app.post("/send-email", async (req, res) => {
     await transporter.sendMail(mailOptions);
     res.status(200).send("Email sent successfully");
   } catch (error) {
+    console.error(error);
+    
     res.status(500).send("Failed to send email");
   }
 });

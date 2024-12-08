@@ -6,7 +6,7 @@ import { useNotification } from "../Libs/Notification";
 
 const TaskOrder = () => {
   const { data: Cardmen, isLoading, error } = useGetallcardQuery()
-  const {orders} =useNotification()
+  const { orders } =useNotification()
 
   // Функция для вычисления общей суммы
   const calculateTotalPrice = (items: CardSliderData[]) => {
@@ -31,6 +31,7 @@ const TaskOrder = () => {
             Cardmen &&
             Cardmen.filter((task)=> task.trash===true).map((tasks) => (
               <TasksOrderCard
+
                 card={tasks.card}
                 title={tasks.title}
                 id={tasks.id}

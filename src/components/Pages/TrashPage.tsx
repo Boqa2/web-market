@@ -62,21 +62,21 @@ const TrashPage = () => {
 
   const handleHeartChange = async (id: number) => {
     const current = hearts[id] || false;
-    await updHearts({ id, bol: !current});
+    await updHearts({ id, bol: !current });
     setHearts({ ...hearts, [id]: !current });
     toast.success(`Task ${!current ? "add to" : "delete from"} favorite`);
-    if(!current){
-      setNotificationCount(notificationCount+1)
-    }else{
-      setNotificationCount(notificationCount-1)
+    if (!current) {
+      setNotificationCount(notificationCount + 1);
+    } else {
+      setNotificationCount(notificationCount - 1);
     }
   };
   const favorites = async (id: number) => {
     const current = favorite[id] || false;
     await updFavorite({ id, bol: !current });
     setFavorite({ ...favorite, [id]: !current });
-    if(!current){
-      setKorzina(korzina - 1)
+    if (!current) {
+      setKorzina(korzina - 1);
     }
     toast.success(`Task ${!current ? "add to" : "delete from"} cart`);
   };
@@ -165,8 +165,19 @@ const TrashPage = () => {
               Cardmen.map((task) => (
                 <div className="px-5" key={task.id}>
                   <TaskForCard
+                    handleFavorite={() => favorites(task.id)}
+                    handleHeart={() => handleHeartChange(task.id)}
+                    hearts={
+                      hearts[task.id] || undefined
+                        ? hearts[task.id]
+                        : task.hearts
+                    }
+                    trash={
+                      favorite[task.id] !== undefined
+                        ? favorite[task.id]
+                        : task.trash
+                    }
                     key={task.id}
-                    trash={task.trash}
                     about={task.about}
                     id={task.id}
                     title={task.title}

@@ -3,24 +3,20 @@ import { CardSliderData } from "../Libs/type/types";
 import { useNotification } from "../Libs/Notification";
 
 const LoginOrderPage = () => {
-  const {register, handleSubmit, formState:{errors}}=useForm<CardSliderData>()
-  const { setOrders }=useNotification()
-  const sumbit =(data:CardSliderData)=>{
-    // Извлекаем данные из localStorage
-  const existingData = localStorage.getItem("produkt");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CardSliderData>();
+  const { setOrders } = useNotification();
+  const sumbit = (data: CardSliderData) => {
+    const existingData = localStorage.getItem("produkt");
 
-  // Проверяем, есть ли данные, и преобразуем их в массив
-  const produktArray = existingData ? JSON.parse(existingData) : [];
-
-  // Добавляем новые данные в массив
-  produktArray.push(data);
-
-  // Сохраняем обновлённый массив в localStorage
-  localStorage.setItem("produkt", JSON.stringify(produktArray));
-
-  // Логгируем массив для проверки
-  console.log(produktArray);
-  }
+    const produktArray = existingData ? JSON.parse(existingData) : [];
+    produktArray.push(data);
+    localStorage.setItem("produkt", JSON.stringify(produktArray));
+    console.log(produktArray);
+  };
   return (
     <div className="">
       <div className="space-y-2 mb-5">
@@ -43,13 +39,21 @@ const LoginOrderPage = () => {
                 <p>
                   Контактное лицо (ФИО) <span className="text-red-500">*</span>
                 </p>
-                <input  {...register("title", {required: "Enter this role"})} className="input" type="text" />
+                <input
+                  {...register("title", { required: "Enter this role" })}
+                  className="input"
+                  type="text"
+                />
               </label>
               <label htmlFor="">
                 <p>
                   Контактный телефон <span className="text-red-500">*</span>
                 </p>
-                <input  {...register("title", {required: "Enter this role"})}  type="number" className="input" />
+                <input
+                  {...register("title", { required: "Enter this role" })}
+                  type="tel"
+                  className="input"
+                />
               </label>
             </div>
           </div>
@@ -57,7 +61,13 @@ const LoginOrderPage = () => {
         <div>
           <p>Доставка</p>
           <div className="space-y-4">
-            <button type="button" onClick={()=>setOrders(0)} className="label">
+            <button
+              type="button"
+              onClick={() => {
+                setOrders(0);
+              }}
+              className="label"
+            >
               <input
                 type="radio"
                 name="delivery"
@@ -70,9 +80,17 @@ const LoginOrderPage = () => {
               </div>
               <span className="ml-auto text-lg font-bold">+ 0 ₽</span>
             </button>
-
-            <button type="button" onClick={()=>setOrders(300)} className="label">
-              <input defaultChecked type="radio" name="delivery" className="radio" />
+            <button
+              type="button"
+              onClick={() => setOrders(300)}
+              className="label"
+            >
+              <input
+                defaultChecked
+                type="radio"
+                name="delivery"
+                className="radio"
+              />
               <div>
                 <span className="text-lg font-medium">Курьером</span>
                 <p className="text-gray-500">Доставка курьером</p>
@@ -92,8 +110,14 @@ const LoginOrderPage = () => {
           </label>
           <p>Покупатель</p>
           <label htmlFor="" className=" flex-col items-start gap-2">
-            <p>Email <span className="text-red-500">*</span></p>
-            <input  {...register("title", {required: "Enter this role"})}  className="input" type="email" />
+            <p>
+              Email <span className="text-red-500">*</span>
+            </p>
+            <input
+              {...register("title", { required: "Enter this role" })}
+              className="input"
+              type="email"
+            />
             <p>{errors.root?.message}</p>
           </label>
         </div>
@@ -101,8 +125,17 @@ const LoginOrderPage = () => {
           <p>
             Способ оплаты<span className="text-red-500"> *</span>
           </p>
-          <button type="button" onClick={()=>setOrders(300)} className="label">
-            <input defaultChecked type="radio" name="delivery" className="radio" />
+          <button
+            type="button"
+            onClick={() => setOrders(300)}
+            className="label"
+          >
+            <input
+              defaultChecked
+              type="radio"
+              name="delivery"
+              className="radio"
+            />
             <div>
               <span className="text-lg font-medium">Наличными курьер</span>
               <p className="text-gray-500">Наличнами курьер</p>

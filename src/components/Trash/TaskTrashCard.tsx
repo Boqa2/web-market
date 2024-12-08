@@ -19,7 +19,7 @@ const TaskTrashCard = ({
         <div className="md:w-1/5 w-full items-start">
           <img className="rounded-lg w-full" src={card} alt="" />
         </div>
-        <div className="flex w-full  justify-between">
+        <div className="flex w-full flex-col justify-between items-baseline md:flex-row">
           <div>
             <p className="text-xl font-normal">{title}</p>
             <p>Размер: {size}</p>
@@ -27,7 +27,7 @@ const TaskTrashCard = ({
               <p>{price} $</p>
             </div>
           </div>
-          <div className="flex gap-5">
+          <div className="flex gap-5 w-full md:justify-end justify-between ">
             <div className="flex h-7 text-xl items-center bg-slate-300 rounded-lg">
               <button
                 onClick={() => {
@@ -50,7 +50,7 @@ const TaskTrashCard = ({
               </button>
             </div>
             <div>{prices} $</div>
-            <div className="flex flex-col gap-3">
+            <div className="flex md:flex-col flex-row gap-3">
               <button onClick={handleHeart}>
                 <i
                   className={`bx ${hearts ? "text-red-500" : ""} bx-heart`}
