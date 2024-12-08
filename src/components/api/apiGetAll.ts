@@ -2,10 +2,10 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Logo from "../Libs/urls";
 import { CardSliderData } from "../Libs/type/types";
 import supabase from "../Libs/supabase/subpabase";
-// type types = {
-//     gender: boolean,
-//     value: string
-// }
+type types = {
+    bol: boolean,
+    id: number
+}
 
 export const apiGet = createApi({
     reducerPath: "getCard",
@@ -34,26 +34,81 @@ export const apiGet = createApi({
         card: builder.query<CardSliderData, number>({
             queryFn: async (id) => {
                 const { data, error } = await supabase
-                .from('myRequest') // Укажите вашу таблицу
-                .select('*')
-                .eq('id', id)
-                .single(); 
+                    .from('myRequest') // Укажите вашу таблицу
+                    .select('*')
+                    .eq('id', id)
+                    .single();
 
                 if (error) console.log(error.message);
 
                 return { data: data || [] };
             },
         }),
-        // getFavoriteCard: builder.query<CardSliderData[], types>({
-        //     query: ({ gender, value }) => `/cardimgs?${value}=${gender}`,
-        // }),
-        // getcard: builder.query<CardSliderData, string>({
-        //     query: (id) => `/cardimgs/${id}`,
-        // }),
-        // updatemencard: builder.mutation<CardSliderData[], { id: number, body: Partial<CardSliderData> }>({
-        //     query: ({ id, body }) => ({ url: `/cardimgs/${id}`, method: "PATCH", body }),
-        // }),
+        toggleHeart: builder.mutation<CardSliderData, types>({
+            queryFn: async ({ id, bol }) => {
+                try {
+                    const { data, error } = await supabase
+                        .from("myRequest")
+                        .update({ hearts: bol }) // Обновляем значение булевым типом
+                        .eq("id", id)
+                        .select()
+                        .single(); // Получаем обновленную запись
+
+                    if (error) {
+                        return {
+                            error: {
+                                status: 400,
+                                data: error.message,
+                            },
+                        };
+                    }
+
+                    return { data }; // Успешный результат
+                } catch (e) {
+                    console.error(e);
+
+                    return {
+                        error: {
+                            status: 500,
+                            data: "Internal Server Error",
+                        },
+                    };
+                }
+            },
+        }),
+        toggleFavorite: builder.mutation<CardSliderData, types>({
+            queryFn: async ({ id, bol }) => {
+                try {
+                    const { data, error } = await supabase
+                        .from("myRequest")
+                        .update({ trash: bol }) // Обновляем значение булевым типом
+                        .eq("id", id)
+                        .select()
+                        .single(); // Получаем обновленную запись
+
+                    if (error) {
+                        return {
+                            error: {
+                                status: 400,
+                                data: error.message,
+                            },
+                        };
+                    }
+
+                    return { data }; // Успешный результат
+                } catch (e) {
+                    console.error(e);
+
+                    return {
+                        error: {
+                            status: 500,
+                            data: "Internal Server Error",
+                        },
+                    };
+                }
+            },
+        }),
 
     })
 })
-export const { useGetallcardQuery, /*useUpdatemencardMutation, useGetcardQuery, useGetFavoriteCardQuery,*/ useSliderQuery, useCardQuery } = apiGet
+export const { useGetallcardQuery, useSliderQuery, useCardQuery, useToggleFavoriteMutation, useToggleHeartMutation } = apiGet

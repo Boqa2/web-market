@@ -1,86 +1,78 @@
 import TaskCard from "./TaskCards";
 import { useCardQuery } from "../api/apiGetAll";
-// import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
-// import { useState } from "react";
-// import { useNotification } from "../Libs/Notification";
 import { HashLoader } from "react-spinners";
 import { useState } from "react";
+import supabase from "../Libs/supabase/subpabase";
+import toast from "react-hot-toast";
+import { useNotification } from "../Libs/Notification";
 
 const CardAboutMen = () => {
-  
-  // const [chengeSize] = useUpdatemencardMutation();
-  // const { notificationCount, setNotificationCount, setSizes } =
-  //   useNotification();
-  const [heart, setHearts] = useState<{ [id: number]: boolean }>({});
-
-  console.log(setHearts);
-  
-  // const sizeS = async (id: number) => {
-  //   try {
-  //     await chengeSize({ id, body: { size: "s" } }).unwrap();
-  //     setSizes("s");
-  //     toast.success(`You chosen size S`);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // const sizeL = async (id: number) => {
-  //   try {
-  //     await chengeSize({ id, body: { size: "l" } }).unwrap();
-  //     toast.success(`You chosen size L`);
-  //     setSizes("l");
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // const sizeM = async (id: number) => {
-  //   try {
-  //     await chengeSize({ id, body: { size: "m" } }).unwrap();
-  //     toast.success(`You chosen size M`);
-  //     setSizes("m");
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // const sizeXl = async (id: number) => {
-  //   try {
-  //     await chengeSize({ id, body: { size: "xl" } }).unwrap();
-  //     toast.success(`You chosen size Xl`);
-  //     setSizes("xl");
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // const chengeHearts = async (id: number) => {
-  //   const currentStatus = heart[id] || false;
-  //   try {
-  //     await chengeSize({
-  //       id,
-  //       body: { hearts: !currentStatus },
-  //     }).unwrap();
-  //     // console.log("Update response:", response);
-  //     setHearts({ ...heart, [id]: !currentStatus });
-  //     if (!currentStatus) {
-  //       setNotificationCount(notificationCount + 1);
-  //     } else {
-  //       setNotificationCount(notificationCount - 1);
-  //     }
-  //     toast.success(
-  //       `Task ${!currentStatus ? "added to" : "removed from"} favorites`,
-  //       { position: "bottom-right" }
-  //     );
-  //   } catch (error) {
-  //     console.error("Failed to update heart status:", error);
-  //   }
-  // };
   const { id } = useParams<{ id: string }>();
   const { data, isLoading, error } = useCardQuery(Number(id));
+  const { notificationCount, setNotificationCount, setSizes } =
+    useNotification();
+  const [hearts, setHearts] = useState<{ [id: number]: boolean }>({});
 
-  console.log(data);
-  
+  const sizeS = async (id: number) => {
+    try {
+      await supabase.from("myRequest").update({ size: "S" }).eq("id", id);
+      setSizes("s");
+      toast.success(`You chosen size S`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const sizeL = async (id: number) => {
+    try {
+      await supabase.from("myRequest").update({ size: "L" }).eq("id", id);
+      setSizes("l");
+      toast.success(`You chosen size L`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const sizeM = async (id: number) => {
+    try {
+      await supabase.from("myRequest").update({ size: "M" }).eq("id", id);
+      setSizes("m");
+      toast.success(`You chosen size M`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const sizeXl = async (id: number) => {
+    try {
+      await supabase.from("myRequest").update({ size: "XL" }).eq("id", id);
+      setSizes("xl");
+      toast.success(`You chosen size XL`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleHeartChange = async (id: number) => {
+    const currentStatus = hearts[id];
+    try {
+      await supabase
+        .from("myRequest")
+        .update({ hearts: !currentStatus })
+        .eq("id", id);
+
+        toast.success(`Task ${!currentStatus ? "add to" : "delet from"} favorite`)
+      if (!currentStatus) {
+        setNotificationCount(notificationCount + 1);
+      } else {
+        setNotificationCount(notificationCount - 1);
+      }
+      setHearts({ ...hearts, [id]: !currentStatus });
+
+      console.log(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <div>
+    <div className="w-full">
       {isLoading ? (
         <div className="grid place-items-center">
           <HashLoader loading={true} size={50} />
@@ -89,29 +81,20 @@ const CardAboutMen = () => {
         <>Failed to fetch</>
       ) : data && data ? (
         <TaskCard
-              // handleHearts={() => chengeHearts(data.id)}
-              hearts={heart[data.id] !== undefined ? heart[data.id] : data.hearts}
-              // handleSizeS={() => sizeS(data.id)}
-              // handleSizeL={() => sizeL(data.id)}
-              // handleSizeM={() => sizeM(data.id)}
-              // handleSizeXl={() => sizeXl(data.id)}
-              text={data.about.text}
-              sostav={data.about.sostav || "No composition info"}
-              mesto={data.about.mesto || "No place info"}
-              title={data.title}
-              card={data.card}
-              key={data.id}
-              price={data.price} handleSizeS={function (): void {
-                throw new Error("Function not implemented.");
-              } } handleSizeL={function (): void {
-                throw new Error("Function not implemented.");
-              } } handleSizeM={function (): void {
-                throw new Error("Function not implemented.");
-              } } handleSizeXl={function (): void {
-                throw new Error("Function not implemented.");
-              } } handleHearts={function (): void {
-                throw new Error("Function not implemented.");
-              } }        />
+          handleHearts={() => handleHeartChange(data.id)}
+          hearts={hearts[data.id] !== undefined ? hearts[data.id] : data.hearts}
+          text={data.about.text}
+          sostav={data.about.sostav || "No composition info"}
+          mesto={data.about.mesto || "No place info"}
+          title={data.title}
+          card={data.card}
+          key={data.id}
+          price={data.price}
+          handleSizeL={() => sizeL(data.id)}
+          handleSizeM={() => sizeM(data.id)}
+          handleSizeXl={() => sizeXl(data.id)}
+          handleSizeS={() => sizeS(data.id)}
+        />
       ) : (
         <>No data available</>
       )}

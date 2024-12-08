@@ -18,11 +18,11 @@ const TaskForCard = ({
         to={`cardimgs/${id}`}
         className=""
       >
-        <div className="relative h-[80%] text-[20px]">
+        <div className="relative aspect-[9/13] object-contain h-[80%] text-[20px]">
           <img className="rounded-lg h-full w-full shadow-2xl" src={card} alt="" />
         </div>
         <div className="px-2">
-          <p>{title}</p>
+          <p className="text-xl font-normal">{title}</p>
           <div className="flex justify-between items-center ">
             <p className="text-lg">{price} $</p>
           </div>

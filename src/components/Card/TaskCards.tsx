@@ -61,10 +61,10 @@ const TaskCard = ({
   return (
     <div className="flex  items-center md:items-baseline px-10 gap-5 w-full">
       <div className="w-full flex-col md:flex-row flex gap-6">
-        <div className="shadow-2xl w-1/2">
+        <div className="shadow-2xl md:w-1/2 w-full">
           <img className="w-full rounded-md" src={card} alt="" />
         </div>
-        <div className="w-1/2 space-y-5">
+        <div className="md:w-1/2 w-full space-y-5">
           <div>
             <StarRating totalStars={5} />
           </div>
@@ -103,7 +103,7 @@ const TaskCard = ({
               </button>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center w-full gap-3">
             {lengths == 0  ? (
               <button
                 onClick={() => {

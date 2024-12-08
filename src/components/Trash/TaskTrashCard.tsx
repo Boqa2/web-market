@@ -21,8 +21,8 @@ const TaskTrashCard = ({
         </div>
         <div className="flex w-full  justify-between">
           <div>
-            <p>{title}</p>
-            <p>{size}</p>
+            <p className="text-xl font-normal">{title}</p>
+            <p>Размер: {size}</p>
             <div>
               <p>{price} $</p>
             </div>

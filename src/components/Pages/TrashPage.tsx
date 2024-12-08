@@ -3,26 +3,29 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TaskForCard from "../Card/TaskForCard";
 import {
-  useGetallcardQuery
+  useGetallcardQuery,
+  useToggleFavoriteMutation,
+  useToggleHeartMutation,
 } from "../api/apiGetAll";
 import TaskTrashCard from "../Trash/TaskTrashCard";
 import { useRef, useState } from "react";
 import TrashSticy from "../Trash/TrashSticy";
-// import { useNotification } from "../Libs/Notification";
-// import toast from "react-hot-toast";
 import { HashLoader } from "react-spinners";
 import { CardSliderData } from "../Libs/type/types";
+import { useNotification } from "../Libs/Notification";
+import toast from "react-hot-toast";
 
 const TrashPage = () => {
   const { data: Cardmen, isLoading, error } = useGetallcardQuery();
-  // const { data: Cardmens,  } = useGetFavoriteCardQuery({value:"katalog", gender: false });
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef<Slider>(null);
-  // const [heart, setHeart] = useState<{ [id: number]: boolean }>({});
-  // // const [upcardmen] = useUpdatemencardMutation();
-  // const [favorite, setFavorite] = useState<{ [id: number]: boolean }>({});
-  // const { notificationCount, setNotificationCount, korzina, setKorzina } =
-    // useNotification();
+  const [updFavorite] = useToggleFavoriteMutation();
+  const [updHearts] = useToggleHeartMutation();
+
+  const [hearts, setHearts] = useState<{ [id: number]: boolean }>({});
+  const [favorite, setFavorite] = useState<{ [id: number]: boolean }>({});
+  const { notificationCount, setNotificationCount, korzina, setKorzina } =
+    useNotification();
   const settings = {
     dots: false,
     infinite: false,
@@ -56,8 +59,27 @@ const TrashPage = () => {
     swipeToSlide: true, // Включаем возможность перетаскивания слайда мышкой
     beforeChange: (_current: number, next: number) => setCurrentIndex(next),
   };
-  
-  
+
+  const handleHeartChange = async (id: number) => {
+    const current = hearts[id] || false;
+    await updHearts({ id, bol: !current});
+    setHearts({ ...hearts, [id]: !current });
+    toast.success(`Task ${!current ? "add to" : "delete from"} favorite`);
+    if(!current){
+      setNotificationCount(notificationCount+1)
+    }else{
+      setNotificationCount(notificationCount-1)
+    }
+  };
+  const favorites = async (id: number) => {
+    const current = favorite[id] || false;
+    await updFavorite({ id, bol: !current });
+    setFavorite({ ...favorite, [id]: !current });
+    if(!current){
+      setKorzina(korzina - 1)
+    }
+    toast.success(`Task ${!current ? "add to" : "delete from"} cart`);
+  };
 
   const calculateTotalPrice = (items: CardSliderData[]) => {
     return items
@@ -66,39 +88,11 @@ const TrashPage = () => {
   };
 
   const calcMen = Cardmen ? calculateTotalPrice(Cardmen) : 0;
-
-
-  // const handleHeartChange = async (id: number) => {
-  //   const current = heart[id] || false;
-  //   try {
-  //     await upcardmen({
-  //       id,
-  //       body: { hearts: !current },
-  //     }).unwrap();
-  //     setHeart({ ...heart, [id]: !current });
-  //     setNotificationCount(notificationCount + 1);
-
-  //     toast.success(`Task ${!current ? "removed" : "added"} favorites`, {
-  //       position: "top-right",
-  //     });
-  //   } catch (error) {
-  //     console.error("Failed to update heart status:", error);
-  //   }
-  // };
-  // const favorites = async (id: number) => {
-  //   try {
-  //     await upcardmen({ id, body: { trash: false } });
-  //     setFavorite({ ...favorite, [id]: false });
-  //     setKorzina(korzina - 1);
-  //     toast.error(`Task removed in trash`, { position: "top-right" });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  const cardlength = Cardmen ? Cardmen.length : 0
+  const card =
+    (Cardmen && Cardmen.filter((task) => task.trash === true).length) || 0;
   return (
     <div className="px-10 h-full ">
-      <h1 className="text-3xl font-semibold text-gray-700 font-mono my-7">
+      <h1 className="text-3xl font-semicurrentd text-gray-700 font-mono my-7">
         Карзина
       </h1>
       <div className="flex w-full flex-col md:flex-row relative gap-4">
@@ -111,38 +105,39 @@ const TrashPage = () => {
             Cardmen.filter((task) => task.trash === true).map((tasks) => (
               <div className="relative">
                 <TaskTrashCard
-                
-                  // handleFavorite={() => favorites(tasks.id)}
-                  // handleHeart={() => handleHeartChange(tasks.id)}
-                  // hearts={
-                  //   heart[tasks.id] || undefined
-                  //     ? heart[tasks.id]
-                  //     : tasks.hearts
-                  // }
-                  // trash={
-                  //   favorite[tasks.id] !== undefined
-                  //     ? favorite[tasks.id]
-                  //     : tasks.trash
-                  // }
+                  handleFavorite={() => favorites(tasks.id)}
+                  handleHeart={() => handleHeartChange(tasks.id)}
+                  hearts={
+                    hearts[tasks.id] || undefined
+                      ? hearts[tasks.id]
+                      : tasks.hearts
+                  }
+                  trash={
+                    favorite[tasks.id] !== undefined
+                      ? favorite[tasks.id]
+                      : tasks.trash
+                  }
+                  size={tasks.size}
                   id={tasks.id}
                   key={tasks.id}
                   title={tasks.title}
                   card={tasks.card}
                   price={tasks.price}
-                  about={tasks.about} trash={false}                />
+                  about={tasks.about}
+                />
               </div>
             ))
           ) : (
-            <></>
+            <>ee</>
           )}
         </div>
         <div className="relative w-full md:w-1/4">
-          <TrashSticy lengt={cardlength} prices={calcMen} />
+          {card !== 0 ? <TrashSticy lengt={card} prices={calcMen} /> : ""}
         </div>
       </div>
       <div className="py-5 h-full">
         <div className="overflow-hidden h-full">
-          <h1 className="text-3xl font-semibold text-gray-700 font-mono">
+          <h1 className="text-3xl font-semicurrentd text-gray-700 font-mono">
             Каталог
           </h1>
           <div className="flex justify-end px-10 py-2 disabled:text- gap-3 text-[#f05356]">
@@ -170,7 +165,7 @@ const TrashPage = () => {
               Cardmen.map((task) => (
                 <div className="px-5" key={task.id}>
                   <TaskForCard
-                  key={task.id}
+                    key={task.id}
                     trash={task.trash}
                     about={task.about}
                     id={task.id}
