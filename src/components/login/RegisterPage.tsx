@@ -130,7 +130,7 @@ const RegisterPage = () => {
               <p className="text-red-500 -mt-1 font-medium">
                 {errors.password?.message}
               </p>
-              <div className="absolute -inset-y-1 right-0 flex items-center pr-3">
+              <div className="absolute top-10 right-0 flex items-center pr-3">
                 {" "}
                 <button
                   type="button"
@@ -160,12 +160,12 @@ const RegisterPage = () => {
           </form>
         </div>
       </div>
-      <div className="text-center">
+      <div className="text-center w-full py-2 px-14">
         <Link
-          className="hover:border-b text-slate-700 border-black"
+          className="hover:border-b  text-wrap text-red-700 font-bold border-red-600"
           to={"/login"}
         >
-          Если у вы не зарегистрырованы перейдите по сылке
+          Если у вы уже зарегистрырованы перейдите по сылке
         </Link>
       </div>
     </div>

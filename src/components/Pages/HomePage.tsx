@@ -2,6 +2,8 @@ import { useState } from "react";
 import CardSlider from "../Slider/CardSlider";
 import CardMenImg from "../Card/CardMenImg";
 import { useNotification } from "../Libs/Notification";
+import { useSelector } from "react-redux";
+import { AuthState } from "../../app/rtqStore";
 
 const HomePage = () => {
   const [btn, setBtn] = useState<boolean>(true);
@@ -22,12 +24,28 @@ const HomePage = () => {
       setUrl("male");
     }
   };
+  const user = useSelector(
+    (state: { auth: AuthState }) => state.auth.user?.name
+  );
   return (
-    <div className="flex container mx-auto md:w-full flex-col  gap-10">
+    <div className="flex container mx-auto md:w-full flex-col gap-2">
       <div className="relative z-0">
         <CardSlider />
       </div>
-      <div className="flex justify-center my-2 text-lg font-medium items-center  gap-3">
+
+      {user && (
+        <p className="text-sm font-medium md:hidden flex justify-center items-center  ">
+          {user ? (
+            <>
+              {" "}
+              <i className="bx text-green-500 bxs-user text-2xl mr-2"></i> {user.toUpperCase()}{" "}
+            </>
+          ) : (
+            ""
+          )}
+        </p>
+      )}
+      <div className="flex justify-center mb-6  text-lg font-medium items-center  gap-1">
         <button
           onClick={() => handleBorder("men")}
           className={`hover:text-slate-500 text-slate-900 ${
