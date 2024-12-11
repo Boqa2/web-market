@@ -6,17 +6,29 @@ import { useState } from "react";
 import supabase from "../Libs/supabase/subpabase";
 import toast from "react-hot-toast";
 import { useNotification } from "../Libs/Notification";
+import { useSelector } from "react-redux";
+import { AuthState } from "../../app/rtqStore";
 
 const CardAboutMen = () => {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading, error } = useCardQuery(Number(id));
-  const { notificationCount, setNotificationCount, setSizes } =
-    useNotification();
+  const [favorite, setFavorite] = useState<{ [id: number]: boolean }>({});
+  const {
+    notificationCount,
+    setNotificationCount,
+    korzina,
+    setKorzina,
+    setSizes,
+  } = useNotification();
   const [hearts, setHearts] = useState<{ [id: number]: boolean }>({});
+  const user = useSelector((state: { auth: AuthState }) => state.auth.user?.id);
 
   const sizeS = async (id: number) => {
     try {
-      await supabase.from("myRequest").update({ size: "S" }).eq("id", id);
+      await supabase
+        .from("myRequest")
+        .update({ size: "S", user_id: user })
+        .eq("id", id);
       setSizes("s");
       toast.success(`You chosen size S`);
     } catch (error) {
@@ -25,7 +37,10 @@ const CardAboutMen = () => {
   };
   const sizeL = async (id: number) => {
     try {
-      await supabase.from("myRequest").update({ size: "L" }).eq("id", id);
+      await supabase
+        .from("myRequest")
+        .update({ size: "L", user_id: user })
+        .eq("id", id);
       setSizes("l");
       toast.success(`You chosen size L`);
     } catch (error) {
@@ -34,7 +49,10 @@ const CardAboutMen = () => {
   };
   const sizeM = async (id: number) => {
     try {
-      await supabase.from("myRequest").update({ size: "M" }).eq("id", id);
+      await supabase
+        .from("myRequest")
+        .update({ size: "M", user_id: user })
+        .eq("id", id);
       setSizes("m");
       toast.success(`You chosen size M`);
     } catch (error) {
@@ -43,7 +61,10 @@ const CardAboutMen = () => {
   };
   const sizeXl = async (id: number) => {
     try {
-      await supabase.from("myRequest").update({ size: "XL" }).eq("id", id);
+      await supabase
+        .from("myRequest")
+        .update({ size: "XL", user_id: user })
+        .eq("id", id);
       setSizes("xl");
       toast.success(`You chosen size XL`);
     } catch (error) {
@@ -55,18 +76,37 @@ const CardAboutMen = () => {
     try {
       await supabase
         .from("myRequest")
-        .update({ hearts: !currentStatus })
+        .update({ hearts: !currentStatus, user_id: user })
         .eq("id", id);
 
-        toast.success(`Task ${!currentStatus ? "add to" : "delet from"} favorite`)
+      toast.success(
+        `Task ${!currentStatus ? "add to" : "delet from"} favorite`
+      );
       if (!currentStatus) {
         setNotificationCount(notificationCount + 1);
       } else {
         setNotificationCount(notificationCount - 1);
       }
       setHearts({ ...hearts, [id]: !currentStatus });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const favorites = async (id: number) => {
+    const currentStatus = favorite[id];
+    try {
+      await supabase
+        .from("myRequest")
+        .update({ trash: !currentStatus, user_id: user })
+        .eq("id", id); // Выбираем только нужные поля
 
-      console.log(id);
+      toast.success(`Task ${!currentStatus ? "add to" : "delet from"} cart`);
+      if (!currentStatus) {
+        setKorzina(korzina + 1);
+      } else {
+        setKorzina(korzina - 1);
+      }
+      setFavorite({ ...favorite, [id]: !currentStatus });
     } catch (error) {
       console.log(error);
     }
@@ -81,12 +121,18 @@ const CardAboutMen = () => {
         <>Failed to fetch</>
       ) : data && data ? (
         <TaskCard
+          favoritess={() => favorites(data.id)}
           handleHearts={() => handleHeartChange(data.id)}
           hearts={hearts[data.id] !== undefined ? hearts[data.id] : data.hearts}
           text={data.about.text}
           sostav={data.about.sostav || "No composition info"}
           mesto={data.about.mesto || "No place info"}
           title={data.title}
+          trash={
+            favorite[data.id] !== undefined
+              ? favorite[data.id]
+              : data.trash && data.user_id === user
+          }
           card={data.card}
           key={data.id}
           price={data.price}

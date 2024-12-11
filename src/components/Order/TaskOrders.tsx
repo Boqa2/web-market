@@ -3,15 +3,19 @@ import { useGetallcardQuery } from "../api/apiGetAll";
 import TasksOrderCard from "./TasksOrderCard";
 import { CardSliderData } from "../Libs/type/types";
 import { useNotification } from "../Libs/Notification";
+import { useSelector } from "react-redux";
+import { AuthState } from "../../app/rtqStore";
 
 const TaskOrder = () => {
   const { data: Cardmen, isLoading, error } = useGetallcardQuery()
   const { orders } =useNotification()
-
+  const user = useSelector(
+    (state: { auth: AuthState }) => state.auth.user?.id
+  );
   // Функция для вычисления общей суммы
   const calculateTotalPrice = (items: CardSliderData[]) => {
     return items
-      .filter((task) => task.trash === true) // Фильтруем только те элементы, у которых trash === true
+      .filter((task) => task.trash === true && task.user_id === user ) // Фильтруем только те элементы, у которых trash === true
       .reduce((total, task) => total + (task.price || 0), 0); // Суммируем цену
   };
   const calcMen = Cardmen ? calculateTotalPrice(Cardmen) : 0;
@@ -29,7 +33,7 @@ const TaskOrder = () => {
             <p>console.error(error)</p>
           ) : (
             Cardmen &&
-            Cardmen.filter((task)=> task.trash===true).map((tasks) => (
+            Cardmen.filter((task)=> task.trash===true && task.user_id === user).map((tasks) => (
               <TasksOrderCard
 
                 card={tasks.card}

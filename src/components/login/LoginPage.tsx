@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import supabase from "../Libs/supabase/subpabase";
-import { login } from "../../app/rtqStore";
+import {  login } from "../../app/rtqStore";
 import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
 

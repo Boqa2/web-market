@@ -13,17 +13,21 @@ const SideBar = ({ openSidebar }: Props) => {
     (state: StoreState) => state.auth.isAuthenticated
   );
   const dispatch = useDispatch();
-  const user = useSelector((state: { auth: AuthState }) => state.auth.user?.name);
+  const user = useSelector(
+    (state: { auth: AuthState }) => state.auth.user?.name
+  );
   return (
     <>
       <div className="bg-white px-8 py-4 z-[999] overflow-x-hidden overflow-y-scroll h-full fixed flex  justify-between top-0 left-0 md:w-2/6 w-3/5 ">
         <div className="w-full">
-        <p className="text-sm font-medium hidden md:block">{user ? `User: ${user.toUpperCase()}` : ""}</p>
           <div className="my-4">
             <Link to={"/"} className="text-3xl font-semibold">
               Меню
             </Link>
           </div>
+          <p className="text-sm font-medium hidden md:block">
+            {user ? `User: ${user.toUpperCase()}` : ""}
+          </p>
           <div className="border my-5 border-slate-500 w-[350px]"></div>
           <div>
             <Link to={"/"} className="font-medium text-xl my-5">
@@ -84,8 +88,8 @@ const SideBar = ({ openSidebar }: Props) => {
           </div>
           <div className="my-5">
             <div className="text-3xl space-x-3 text-gray-900">
-            <a href="linkedin: baxtovarshoh">
-              <i className='bx bxl-linkedin-square'></i>
+              <a href="linkedin: baxtovarshoh">
+                <i className="bx bxl-linkedin-square"></i>
               </a>
               <a href="instagam: @baxtovarwox">
                 <i className="bx bxl-instagram"></i>

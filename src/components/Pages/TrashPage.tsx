@@ -14,8 +14,8 @@ import { HashLoader } from "react-spinners";
 import { CardSliderData } from "../Libs/type/types";
 import { useNotification } from "../Libs/Notification";
 import toast from "react-hot-toast";
-import { StoreState } from "../../app/store";
 import { useSelector } from "react-redux";
+import { AuthState } from "../../app/rtqStore";
 
 const TrashPage = () => {
   const { data: Cardmen, isLoading, error } = useGetallcardQuery();
@@ -61,7 +61,6 @@ const TrashPage = () => {
     swipeToSlide: true, // Включаем возможность перетаскивания слайда мышкой
     beforeChange: (_current: number, next: number) => setCurrentIndex(next),
   };
-  const user_id = useSelector((state: StoreState) => state.auth.user?.id);
 
   const handleHeartChange = async (id: number) => {
     const current = hearts[id] || false;
@@ -84,15 +83,20 @@ const TrashPage = () => {
     toast.success(`Task ${!current ? "add to" : "delete from"} cart`);
   };
 
+  const user = useSelector(
+    (state: { auth: AuthState }) => state.auth.user?.id
+  );
   const calculateTotalPrice = (items: CardSliderData[]) => {
     return items
-      .filter((task) => task.trash === true) // Фильтруем только те элементы, у которых trash === true
+      .filter((task) => task.trash === true && task.user_id === user) // Фильтруем только те элементы, у которых trash === true
       .reduce((total, task) => total + (task.price || 0), 0); // Суммируем цену
   };
 
+  console.log(user);
+  
   const calcMen = Cardmen ? calculateTotalPrice(Cardmen) : 0;
   const card =
-    (Cardmen && Cardmen.filter((task) => task.trash === true).length) || 0;
+    (Cardmen && Cardmen.filter((task) => task.trash === true && task.user_id === user).length) || 0;
   return (
     <div className="px-10 h-full ">
       <h1 className="text-3xl font-semicurrentd text-gray-700 font-mono my-7">
@@ -107,8 +111,8 @@ const TrashPage = () => {
           ) : Cardmen ? (
             Cardmen.filter((task) => {
               const heartStatus =
-                hearts[task.id] !== undefined ? hearts[task.id] : task.hearts;
-              return heartStatus === true && task.user_id === user_id;
+                favorite[task.id] !== undefined ? favorite[task.id] : task.trash;
+              return heartStatus === true && task.user_id === user;
             }).map((tasks) => (
               <div className="relative">
                 <TaskTrashCard

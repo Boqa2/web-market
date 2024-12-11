@@ -15,21 +15,9 @@ const LoginOrderPage = () => {
     const produktArray = existingData ? JSON.parse(existingData) : [];
     produktArray.push(data);
     localStorage.setItem("produkt", JSON.stringify(produktArray));
-    console.log(produktArray);
   };
   return (
     <div className="">
-      <div className="space-y-2 mb-5">
-        <h1 className="text-lg">Авторизация</h1>
-        <div className="space-y-2">
-          <button className="bg-red-500 w-full h-12 rounded-lg text-white">
-            Войти или Зарегистрировыться
-          </button>
-          <p className="text-slate-800 ml-4">
-            Зарегистрируйтесь и копите скидки и бонусы в магазине.
-          </p>
-        </div>
-      </div>
       <form onSubmit={handleSubmit(sumbit)} className="w-full">
         <div>
           <h1 className="text-lg font-semibold my-4">Контактные данные</h1>

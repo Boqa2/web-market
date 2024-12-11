@@ -15,7 +15,9 @@ type props = {
   mesto?: string;
   sostav?: string;
   size?: string;
+  favoritess: ()=>void,
   hearts?:boolean;
+  trash?: boolean
 };
 
 const TaskCard = ({
@@ -26,10 +28,12 @@ const TaskCard = ({
   hearts,
   mesto,
   sostav,
+  trash,
   handleSizeS,
   handleSizeL,
   handleSizeXl,
   handleSizeM,
+  favoritess,
   handleHearts,
 }: props) => {
   const [chenge, setChenge] = useState(false);
@@ -104,11 +108,9 @@ const TaskCard = ({
             </div>
           </div>
           <div className="flex items-center w-full gap-3">
-            {lengths == 0  ? (
+            {trash   ? (
               <button
-                onClick={() => {
-                  setLenghts(lengths+1)
-                }}
+                onClick={favoritess}
                 className="bg-[#f64c4c] w-2/3 h-14 rounded-lg text-lg text-white font-semibold"
               >
                 В корзину

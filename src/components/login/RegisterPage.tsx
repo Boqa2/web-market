@@ -19,36 +19,26 @@ const RegisterPage = () => {
   } = useForm<integer>();
   const dispatch = useDispatch();
   const home = useNavigate();
+
   const signUp = async (data: integer) => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
       // Сохраняем пользователя в базе данных
+      const { data: newUsers } = await supabase.from("users").insert({
+        email: data.email,
+        password: data.password, // Рекомендуется использовать хэш вместо открытого текста
+        name: data.name,
+      });
+      console.log(newUsers);
+      
       const response = await supabase
         .from("users")
-        .insert({
-          email: data.email,
-          password: data.password,
-          name: data.name,
-        });
+        .select("*")
+        .eq("email", data.email)
+        .eq("password", data.password);
 
-      // Обрабатываем успешный ответ
-      if (response.data && response.status === 201) {
-        const user = response.data[0];
-
-        // Сохраняем пользователя в Redux
-        dispatch(login({ user }));
-
-        // Сохраняем пользователя в localStorage
-        localStorage.setItem("user", JSON.stringify([user]));
-
-        // Перенаправляем на домашнюю страницу
-        home("/login");
-
-        // Отображаем сообщение об успешной регистрации
-        toast.success("Вы успешно зарегистрировались!");
-        setIsLoading(false)
-      } else if (response.error) {
-        // Обрабатываем ошибку Supabase
+      if (response.error) {
+        // Обработка ошибки
         console.error(
           "Ошибка при создании пользователя:",
           response.error.message
@@ -56,15 +46,30 @@ const RegisterPage = () => {
         toast.error(
           "Ошибка при создании пользователя: " + response.error.message
         );
+      } else if (response.data && response.data.length > 0) {
+        const user = response.data[0];
+
+        // Сохраняем пользователя в Redux
+        dispatch(login({ user }));
+
+        // Сохраняем пользователя в localStorage
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("isAuthenticated", JSON.stringify(true));
+
+        // Перенаправляем на HomePage
+        home("/");
+
+        // Уведомляем об успехе
+        toast.success("Вы успешно зарегстрировались!");
+        reset(); // Сбрасываем форму только при успехе
       }
-    } catch (err) {
-      // Обрабатываем неизвестные ошибки
-      console.error("Неизвестная ошибка:", err);
-      toast.error("Что-то пошло не так, попробуйте снова.");
+    } catch (error) {
+      // Неизвестные ошибки
+      console.error("Неизвестная ошибка:", error);
+      toast.error("Что-то пошло не так. Попробуйте позже.");
+    } finally {
+      setIsLoading(false); // Останавливаем загрузку
     }
-    reset();
-    setIsLoading(false)
-    home("/login");
   };
 
   return (
