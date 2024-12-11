@@ -1,11 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Logo from "../Libs/urls";
-import { CardSliderData } from "../Libs/type/types";
+import { CardSliderData, types } from "../Libs/type/types";
 import supabase from "../Libs/supabase/subpabase";
-type types = {
-    bol: boolean,
-    id: number
-}
 
 export const apiGet = createApi({
     reducerPath: "getCard",
@@ -13,8 +9,7 @@ export const apiGet = createApi({
     endpoints: (builder) => ({
         getallcard: builder.query<CardSliderData[], void>({
             queryFn: async () => {
-                const { data, error } = await supabase.from("myRequest").select("*");
-                //  .eq('done', false)
+                const { data, error } = await supabase.from("myRequest").select("*")
 
                 if (error) console.log(error.message);
 
@@ -24,10 +19,7 @@ export const apiGet = createApi({
         slider: builder.query<CardSliderData[], void>({
             queryFn: async () => {
                 const { data, error } = await supabase.from("cardSlide").select("*");
-                //  .eq('done', false)
-
                 if (error) console.log(error.message);
-
                 return { data: data || [] };
             },
         }),

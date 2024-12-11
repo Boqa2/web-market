@@ -14,6 +14,8 @@ import { HashLoader } from "react-spinners";
 import { CardSliderData } from "../Libs/type/types";
 import { useNotification } from "../Libs/Notification";
 import toast from "react-hot-toast";
+import { StoreState } from "../../app/store";
+import { useSelector } from "react-redux";
 
 const TrashPage = () => {
   const { data: Cardmen, isLoading, error } = useGetallcardQuery();
@@ -59,6 +61,7 @@ const TrashPage = () => {
     swipeToSlide: true, // Включаем возможность перетаскивания слайда мышкой
     beforeChange: (_current: number, next: number) => setCurrentIndex(next),
   };
+  const user_id = useSelector((state: StoreState) => state.auth.user?.id);
 
   const handleHeartChange = async (id: number) => {
     const current = hearts[id] || false;
@@ -102,7 +105,11 @@ const TrashPage = () => {
           ) : error ? (
             <>Fetch loading error</>
           ) : Cardmen ? (
-            Cardmen.filter((task) => task.trash === true).map((tasks) => (
+            Cardmen.filter((task) => {
+              const heartStatus =
+                hearts[task.id] !== undefined ? hearts[task.id] : task.hearts;
+              return heartStatus === true && task.user_id === user_id;
+            }).map((tasks) => (
               <div className="relative">
                 <TaskTrashCard
                   handleFavorite={() => favorites(tasks.id)}

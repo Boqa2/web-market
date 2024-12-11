@@ -6,6 +6,8 @@ import { useNotification } from "../Libs/Notification";
 import supabase from "../Libs/supabase/subpabase";
 import toast from "react-hot-toast";
 import Slider from "react-slick";
+import { useSelector } from "react-redux";
+import { AuthState } from "../../app/rtqStore";
 
 const FavoritesPage = () => {
   const {
@@ -66,8 +68,8 @@ const FavoritesPage = () => {
       );
       if (!currentStatus) {
         setNotificationCount(notificationCount + 1);
-      }else{
-        setNotificationCount(notificationCount -1)
+      } else {
+        setNotificationCount(notificationCount - 1);
       }
       setHearts({ ...hearts, [id]: !currentStatus });
 
@@ -95,7 +97,9 @@ const FavoritesPage = () => {
       console.log(error);
     }
   };
-
+  const user = useSelector((state: { auth: AuthState }) => state.auth.user?.id);
+  
+  
   return (
     <div className="px-10">
       <div className="space-y-4">
@@ -113,7 +117,7 @@ const FavoritesPage = () => {
             Cardmen.filter((task) => {
               const heartStatus =
                 hearts[task.id] !== undefined ? hearts[task.id] : task.hearts;
-              return heartStatus === true;
+              return heartStatus === true && task.user_id === user;
             }).map((tasks) => (
               <TaskForCard
                 trash={

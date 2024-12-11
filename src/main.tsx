@@ -6,12 +6,14 @@ import Louyot from "./components/Layout/Louyot";
 import TrashPage from "./components/Pages/TrashPage";
 import HomePage from "./components/Pages/HomePage";
 import FavoritesPage from "./components/Pages/FavoritesPage";
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./components/login/LoginPage";
 import CardAboutMen from "./components/Card/CardAboutMen";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import { NotificationProvider } from "./components/Libs/Notification";
 import OrderPage from "./components/Pages/OrderPage";
+import ProtectedRoute from "./components/login/ProtectedRoute";
+import RegisterPage from "./components/login/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -20,15 +22,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: (
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "trash",
-        element: <TrashPage />,
+        element: (
+          <ProtectedRoute>
+            <TrashPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "favorites",
-        element: <FavoritesPage />,
+        element: (
+          <ProtectedRoute>
+            <FavoritesPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/cardimgs/:id",
@@ -38,9 +52,18 @@ const router = createBrowserRouter([
         path: "login",
         element: <LoginPage />,
       },
-      {path: "order",
-        element: <OrderPage />
-      }
+      {
+        path: "register",
+        element: <RegisterPage />,
+      },
+      {
+        path: "order",
+        element: (
+          <ProtectedRoute>
+            <OrderPage />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);

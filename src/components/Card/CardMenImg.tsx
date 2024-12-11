@@ -6,6 +6,8 @@ import { CardSliderData } from "../Libs/type/types";
 import TaskForCard from "./TaskForCard";
 import { HashLoader } from "react-spinners";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { AuthState } from "../../app/rtqStore";
 
 const CardMenImg = () => {
   const [hearts, setHearts] = useState<{ [id: number]: boolean }>({});
@@ -13,13 +15,13 @@ const CardMenImg = () => {
   const { url, setKorzina, notificationCount, setNotificationCount, korzina } =
     useNotification();
   const { data, isLoading } = useGetallcardQuery();
-
+  const user = useSelector((state: { auth: AuthState }) => state.auth.user?.id);
   const handleHeartChange = async (id: number) => {
     const currentStatus = hearts[id];
     try {
       await supabase
         .from("myRequest")
-        .update({ hearts: !currentStatus })
+        .update({ hearts: !currentStatus, user_id: user })
         .eq("id", id);
 
       toast.success(
@@ -42,10 +44,10 @@ const CardMenImg = () => {
     try {
       await supabase
         .from("myRequest")
-        .update({ trash: !currentStatus })
+        .update({ trash: !currentStatus, user_id: user })
         .eq("id", id); // Выбираем только нужные поля
 
-        toast.success(`Task ${!currentStatus ? "add to" : "delet from"} cart`)
+      toast.success(`Task ${!currentStatus ? "add to" : "delet from"} cart`);
       if (!currentStatus) {
         setKorzina(korzina + 1);
       } else {
@@ -56,6 +58,7 @@ const CardMenImg = () => {
       console.log(error);
     }
   };
+
   return (
     <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-5 px-2 md:px-9">
       {isLoading ? (
@@ -69,10 +72,14 @@ const CardMenImg = () => {
             <TaskForCard
               handleHeart={() => handleHeartChange(task.id)}
               hearts={
-                hearts[task.id] !== undefined ? hearts[task.id] : task.hearts
+                hearts[task.id] !== undefined
+                  ? hearts[task.id]
+                  : task.hearts && task.user_id === user
               }
               trash={
-                favorite[task.id] !== undefined ? favorite[task.id] : task.trash
+                favorite[task.id] !== undefined
+                  ? favorite[task.id]
+                  : task.trash && task.user_id === user
               }
               handleFavorite={() => favorites(task.id)}
               id={task.id}
