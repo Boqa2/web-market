@@ -111,13 +111,14 @@ const CardMenImg = () => {
         ) : (
           <>don't have any data</>
         )}
+      </div>
         {isLoading ? (
           <></>
         ) : role === "admin" ? (
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center w-full md:px-10 px-2 md:mt-10 mt-4 items-center">
             <Link
               to={"/newproduct"}
-              className="border px-3 font-semibold hover:bg-green-400 py-1 rounded-lg text-white text-center bg-green-600"
+              className="border px-3 w-full font-semibold hover:bg-green-400 py-2 rounded-lg text-white text-center bg-green-600"
             >
               Добавить продукт
             </Link>
@@ -125,7 +126,6 @@ const CardMenImg = () => {
         ) : (
           ""
         )}
-      </div>
     </>
   );
 };

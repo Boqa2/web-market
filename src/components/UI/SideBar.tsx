@@ -65,7 +65,7 @@ const SideBar = ({ openSidebar }: Props) => {
                     className="hover relative flex items-center"
                     onClick={() => dispatch(logout())}
                   >
-                    Выйти
+                    <div onClick={openSidebar}>Выйти</div>
                   </button>
                 ) : (
                   ""

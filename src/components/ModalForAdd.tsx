@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import supabase from "./Libs/supabase/subpabase";
 import toast from "react-hot-toast";
-import { v4 as uuidv4 } from 'uuid';
 type add = {
   title: string;
   price: number;
@@ -28,7 +27,7 @@ const ModalForAdd = () => {
   const home = useNavigate();
   const submit = async (data: add) => {
     setIsLoading(true);
-    const uniqueId = uuidv4();
+    const uniqueId = Math.floor(Math.random() * 100000);
 
     const { error } = await supabase.from("myRequest").insert({
       id: uniqueId,

@@ -66,7 +66,7 @@ const HomePage = () => {
           Женшины
         </button>
       </div>
-      <div className="relative">
+      <div className="relative w-full">
         <CardMenImg  />
       </div>
     </div>
