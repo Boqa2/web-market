@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { CardSliderData } from "../Libs/type/types";
+import { useSelector } from "react-redux";
+import { AuthState } from "../../app/rtqStore";
 
 const TaskForCard = ({
   title,
@@ -10,16 +12,21 @@ const TaskForCard = ({
   trash,
   handleHeart,
   handleFavorite,
+  handleDelete
 }: CardSliderData) => {
+  const role = useSelector(
+    (state: { auth: AuthState }) => state.auth.user?.role
+  );
 
   return (
     <div className="relative container mb-4">
-      <Link
-        to={`cardimgs/${id}`}
-        className=""
-      >
+      <Link to={`cardimgs/${id}`} className="">
         <div className="relative h-[80%] text-[20px]">
-          <img className="rounded-lg h-full w-full shadow-2xl" src={card} alt="" />
+          <img
+            className="rounded-lg h-full w-full shadow-2xl"
+            src={card}
+            alt=""
+          />
         </div>
         <div className="px-2">
           <p className="text-sm md:text-xl font-normal">{title}</p>
@@ -40,9 +47,21 @@ const TaskForCard = ({
           }-heart`}
         ></i>
       </button>
-      <button onClick={handleFavorite} className="w-9 right-3 bottom-0 absolute text-white h-9 rounded-[50%] hover:bg-[#fa7c7e] bg-[#ff6163]">
-        <i className={`bx bx-cart${trash ? "-add" : ""}`}></i>
-      </button>
+      <div className="flex ">
+        <button
+          onClick={handleFavorite}
+          className="w-9 right-3 bottom-0 absolute text-white h-9 rounded-[50%] hover:bg-[#fa7c7e] bg-[#ff6163]"
+        >
+          <i className={`bx bx-cart${trash ? "-add" : ""}`}></i>
+        </button>
+        {role === "admin" ? (
+          <button onClick={handleDelete} className="w-9 right-14 bottom-0 absolute text-white h-9 rounded-[50%] hover:bg-slate-700 bg-green-600">
+            <i className="bx bx-trash"></i>
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

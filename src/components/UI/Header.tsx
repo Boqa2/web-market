@@ -19,6 +19,9 @@ const Header = () => {
   const user = useSelector(
     (state: { auth: AuthState }) => state.auth.user?.name
   );
+  const role = useSelector(
+    (state: { auth: AuthState }) => state.auth.user?.role
+  );
 
   return (
     <div className="p-1 sticky  shadow-xl right-0 top-0 z-[999] mb-5  px-5 bg-gray-200 ">
@@ -35,7 +38,7 @@ const Header = () => {
             {user ? (
               <>
                 {" "}
-                <i className="bx bxs-user text-green-500 text-2xl mr-2"></i> {user.toUpperCase()}{" "}
+                <i className={`bx bxs-user ${role ? "text-green-500" : "text-blue-500"} text-2xl mr-2`}></i> {user.toUpperCase()}{" "}
               </>
             ) : (
               ""

@@ -8,6 +8,7 @@ import { HashLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { AuthState } from "../../app/rtqStore";
+import { Link } from "react-router-dom";
 
 const CardMenImg = () => {
   const [hearts, setHearts] = useState<{ [id: number]: boolean }>({});
@@ -16,6 +17,9 @@ const CardMenImg = () => {
     useNotification();
   const { data, isLoading } = useGetallcardQuery();
   const user = useSelector((state: { auth: AuthState }) => state.auth.user?.id);
+  const role = useSelector(
+    (state: { auth: AuthState }) => state.auth.user?.role
+  );
   const handleHeartChange = async (id: number) => {
     const currentStatus = hearts[id];
     try {
@@ -58,42 +62,71 @@ const CardMenImg = () => {
       console.log(error);
     }
   };
+  const deletedItem = async (id: number) => {
+    const { error } = await supabase
+      .from("myRequest")
+      .delete()
+      .eq("id", id); 
+    if (error) {
+      console.error("Ошибка при удалении:", error.message);
+    } else {
+      toast.success(`Запись с id ${id} успешно удалена`)
+      console.log(`Запись с id ${id} успешно удалена`);
+    }
+  };
 
   return (
-    <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-5 px-2 md:px-9">
-      {isLoading ? (
-        <div className="grid place-items-center">
-          <HashLoader loading={true} size={50} />
-        </div>
-      ) : data && data.length > 0 ? (
-        data
-          .filter((task) => task.gender === url)
-          .map((task: CardSliderData) => (
-            <TaskForCard
-              handleHeart={() => handleHeartChange(task.id)}
-              hearts={
-                hearts[task.id] !== undefined
-                  ? hearts[task.id]
-                  : task.hearts && task.user_id === user
-              }
-              trash={
-                favorite[task.id] !== undefined
-                  ? favorite[task.id]
-                  : task.trash && task.user_id === user
-              }
-              handleFavorite={() => favorites(task.id)}
-              id={task.id}
-              key={task.id}
-              title={task.title}
-              card={task.card}
-              price={task.price}
-              about={task.about}
-            />
-          ))
-      ) : (
-        <>don't have any data</>
-      )}
-    </div>
+    <>
+      <div className="grid relative xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-5 px-2 md:px-9">
+        {isLoading ? (
+          <div className="grid place-items-center">
+            <HashLoader loading={true} size={50} />
+          </div>
+        ) : data && data.length > 0 ? (
+          data
+            .filter((task) => task.gender === url)
+            .map((task: CardSliderData) => (
+              <TaskForCard
+              handleDelete={()=>deletedItem(task.id)}
+                handleHeart={() => handleHeartChange(task.id)}
+                hearts={
+                  hearts[task.id] !== undefined
+                    ? hearts[task.id]
+                    : task.hearts && task.user_id === user
+                }
+                trash={
+                  favorite[task.id] !== undefined
+                    ? favorite[task.id]
+                    : task.trash && task.user_id === user
+                }
+                handleFavorite={() => favorites(task.id)}
+                id={task.id}
+                key={task.id}
+                title={task.title}
+                card={task.card}
+                price={task.price}
+                about={task.about}
+              />
+            ))
+        ) : (
+          <>don't have any data</>
+        )}
+        {isLoading ? (
+          <></>
+        ) : role === "admin" ? (
+          <div className="flex justify-center items-center">
+            <Link
+              to={"/newproduct"}
+              className="border px-3 font-semibold hover:bg-green-400 py-1 rounded-lg text-white text-center bg-green-600"
+            >
+              Добавить продукт
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+    </>
   );
 };
 

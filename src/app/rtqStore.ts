@@ -5,7 +5,8 @@ export interface AuthState {
   user: {
     id: number; // или string, в зависимости от вашей модели
     name: string; // Имя пользователя, если требуется
-    email: string; // Email пользователя
+    email: string;
+    role?: string // Email пользователя
   } | null; // null, если пользователь не авторизован
 }
 

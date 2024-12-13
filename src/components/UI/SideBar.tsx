@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useNotification } from "../Libs/Notification";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthState, logout } from "../../app/rtqStore";
 import { StoreState } from "../../app/store";
+import { logout } from "../../app/rtqStore";
 
 type Props = {
   openSidebar: () => void;
@@ -13,9 +13,6 @@ const SideBar = ({ openSidebar }: Props) => {
     (state: StoreState) => state.auth.isAuthenticated
   );
   const dispatch = useDispatch();
-  const user = useSelector(
-    (state: { auth: AuthState }) => state.auth.user?.name
-  );
   return (
     <>
       <div className="bg-white px-8 py-4 z-[999] overflow-x-hidden overflow-y-scroll h-full fixed flex  justify-between top-0 left-0 md:w-2/6 w-3/5 ">
@@ -25,9 +22,6 @@ const SideBar = ({ openSidebar }: Props) => {
               Меню
             </Link>
           </div>
-          <p className="text-sm font-medium hidden md:block">
-            {user ? `User: ${user.toUpperCase()}` : ""}
-          </p>
           <div className="border my-5 border-slate-500 w-[350px]"></div>
           <div>
             <Link to={"/"} className="font-medium text-xl my-5">

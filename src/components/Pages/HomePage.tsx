@@ -27,6 +27,9 @@ const HomePage = () => {
   const user = useSelector(
     (state: { auth: AuthState }) => state.auth.user?.name
   );
+  const role = useSelector(
+    (state: { auth: AuthState }) => state.auth.user?.role
+  );
   return (
     <div className="flex container mx-auto md:w-full flex-col gap-2">
       <div className="relative z-0">
@@ -38,7 +41,7 @@ const HomePage = () => {
           {user ? (
             <>
               {" "}
-              <i className="bx text-green-500 bxs-user text-2xl mr-2"></i> {user.toUpperCase()}{" "}
+              <i className={`bx bxs-user ${role ? "text-green-500" : "text-blue-500"} text-2xl mr-2`}></i> {user.toUpperCase()}{" "}
             </>
           ) : (
             ""
@@ -63,8 +66,8 @@ const HomePage = () => {
           Женшины
         </button>
       </div>
-      <div className="">
-        <CardMenImg />
+      <div className="relative">
+        <CardMenImg  />
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ import { NotificationProvider } from "./components/Libs/Notification";
 import OrderPage from "./components/Pages/OrderPage";
 import ProtectedRoute from "./components/login/ProtectedRoute";
 import RegisterPage from "./components/login/RegisterPage";
+import ModalForAdd from "./components/ModalForAdd";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
         path: "/",
         element: (
           <ProtectedRoute>
-            <HomePage />
+            <HomePage />,
           </ProtectedRoute>
         ),
       },
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <FavoritesPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "newproduct",
+        element: (
+          <ProtectedRoute>
+            <ModalForAdd />
           </ProtectedRoute>
         ),
       },

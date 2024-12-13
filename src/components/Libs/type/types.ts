@@ -6,6 +6,7 @@ export type CardSliderData = {
   urls?: string,
   title: string;
   gender?: string,
+  handleDelete?: ()=>void;
   handleFavorite?: () => void;
   price: number,
   about: {
@@ -32,5 +33,3 @@ export interface User {
   email: string;
   password: string;
 }
-export interface Session { token: string; expiresAt: Date; };
-export interface AuthResponse { user?: User; session?: Session; error?: { status: number; message: string; }; }
