@@ -48,7 +48,7 @@ const HomePage = () => {
           )}
         </p>
       )}
-      <div className="flex justify-center mb-6  text-lg font-medium items-center  gap-1">
+      <div className="flex justify-center mb-6 gap-5  text-lg font-medium items-center">
         <button
           onClick={() => handleBorder("men")}
           className={`hover:text-slate-500 text-slate-900 ${

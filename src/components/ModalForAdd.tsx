@@ -34,11 +34,11 @@ const ModalForAdd = () => {
       title: data.title,
       card: data.card,
       price: data.price,
-      about: JSON.stringify({
+      about: {
         text: data.about,
         mesto: data.aboutPlace,
         sostav: data.aboutSostav,
-      }),
+      },
       gender: data.gender,
     });
     if (error) {
@@ -90,8 +90,12 @@ const ModalForAdd = () => {
                 {errors.card && (
                   <p className="text-red-500 text-sm">{errors.card.message}</p>
                 )}
-                <button className="w-full my-5 rounded-lg text-white font-semibold h-12 ${
-                isLoading ? bg-[#ff6163]" type="button" onClick={() => setFols(!fols)}>
+                <button
+                  className="w-full my-5 rounded-lg text-white font-semibold h-12 ${
+                isLoading ? bg-[#ff6163]"
+                  type="button"
+                  onClick={() => setFols(!fols)}
+                >
                   {fols ? "Файл" : "Сыллка"}
                 </button>
               </div>
